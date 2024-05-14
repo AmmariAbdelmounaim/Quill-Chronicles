@@ -1,7 +1,9 @@
+import Navbar from "@/components/navbar";
+
 export default async function Index() {
   return (
     <div>
-      <nav></nav>
+      <Navbar />
 
       <div>
         <main></main>
