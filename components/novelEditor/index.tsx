@@ -23,9 +23,8 @@ import { slashCommand, suggestionItems } from "./slash-command";
 import GenerativeMenuSwitch from "./generative/generative-menu-switch";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import { uploadFn } from "./image-upload";
-import { Button } from "../ui/button";
-import { useToast } from "../ui/use-toast";
 import { ScrollArea } from "../ui/scroll-area";
+import { document } from "@/constants/document";
 
 export default function NovelEditor() {
   const [content, setContent] = useState<JSONContent>(document);
