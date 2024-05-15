@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
-import CardWrapper from "../card-wrapper";
 import { signUp } from "@/actions/auth/sign-up";
 import FormError from "../form-error";
 import FormSuccess from "../form-success";
