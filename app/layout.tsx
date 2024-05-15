@@ -6,10 +6,10 @@ import { cn } from "@/utils/tailwind-merge";
 import { Inter } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 
-const defaultUrl = process.env.VERCEL_URL || "http://localhost:3000";
+// const defaultUrl = process.env.VERCEL_URL || "http://localhost:3000";
 
 export const metadata = {
-  metadataBase: new URL(defaultUrl),
+  // metadataBase: new URL(defaultUrl),
   title: "Next.js Full Stack blog app",
 };
 
