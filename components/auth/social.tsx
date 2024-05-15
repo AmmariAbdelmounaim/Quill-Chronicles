@@ -9,7 +9,7 @@ export default function Social() {
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${process.env.VERCEL_URL}/auth/callback`,
+        redirectTo: `${location.origin}/auth/callback`,
       },
     });
   };
