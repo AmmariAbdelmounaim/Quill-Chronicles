@@ -24,6 +24,16 @@
     --input: 214.3 31.8% 91.4%; /* #E9EEF3 */
     --ring: 221.2 83.2% 53.3%; /* #2F65FF */
     --radius: 0.5rem; /* This is a length value, not a color */
+
+    --novel-highlight-default: #ffffff;
+    --novel-highlight-purple: #f6f3f8;
+    --novel-highlight-red: #fdebeb;
+    --novel-highlight-yellow: #fbf4a2;
+    --novel-highlight-blue: #c1ecf9;
+    --novel-highlight-green: #acf79f;
+    --novel-highlight-orange: #faebdd;
+    --novel-highlight-pink: #faf1f5;
+    --novel-highlight-gray: #f1f1ef;
   }
 
   .dark {
@@ -46,5 +56,15 @@
     --border: 217.2 32.6% 17.5%; /* #2A3447 */
     --input: 217.2 32.6% 17.5%; /* #2A3447 */
     --ring: 224.3 76.3% 48%; /* #1A75FF */
+
+    --novel-highlight-default: #000000;
+    --novel-highlight-purple: #3f2c4b;
+    --novel-highlight-red: #5c1a1a;
+    --novel-highlight-yellow: #5c4b1a;
+    --novel-highlight-blue: #1a3d5c;
+    --novel-highlight-green: #1a5c20;
+    --novel-highlight-orange: #5c3a1a;
+    --novel-highlight-pink: #5c1a3a;
+    --novel-highlight-gray: #3a3a3a;
   }
 }

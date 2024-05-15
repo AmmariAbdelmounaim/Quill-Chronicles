@@ -1,5 +1,7 @@
-import { ThemeProvider } from "@/components/theme-provider";
+import Providers from "@/components/providers";
 import "@/styles/globals.css";
+import "@/styles/prosemirror.css";
+
 import { cn } from "@/utils/tailwind-merge";
 import { Inter } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
@@ -37,14 +39,7 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
