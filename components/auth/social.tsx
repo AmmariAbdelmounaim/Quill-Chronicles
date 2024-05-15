@@ -6,11 +6,10 @@ import { createClient } from "@/utils/supabase/client";
 export default function Social() {
   const authOAuth = () => {
     const supabase = createClient();
-    const currentUrl = window.location.href; // Get the current page URL
     supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${location.origin}/auth/callback`,
+        redirectTo: `${process.env.VERCEL_URL}/auth/callback`,
       },
     });
   };
