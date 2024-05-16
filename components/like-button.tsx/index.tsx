@@ -41,10 +41,14 @@ export default function LikeButton({
             size="icon"
             onClick={toggleLike}
             disabled={isPending}
+            className="ml-[48px] "
           >
             <Heart
-              className={cn("size-5", liked && "fill-red-600 stroke-red-600")}
-            />{" "}
+              className={cn(
+                "size-5 mr-1",
+                liked && "fill-red-600 stroke-red-600"
+              )}
+            />
             {likeCount}
           </Button>
         </>
