@@ -10,12 +10,17 @@ import {
 import Header from "../auth/header";
 import Social from "../auth/social";
 import RegisterForm from "../auth/register-form";
+import { ReactNode } from "react";
 
-export default function SignUpDialog() {
+interface SignUpDialogProps {
+  children?: ReactNode;
+}
+
+export default function SignUpDialog({ children }: SignUpDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="default">Sign Up</Button>
+        {children || <Button variant="default">Sign Up</Button>}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
