@@ -1,6 +1,11 @@
-import NovelEditor from "@/components/novelEditor";
+import { fetchUserProfile } from "@/actions/auth/fetch-user-profile";
+import LikeButton from "@/components/like-button.tsx";
 import NovelPreviewEditor from "@/components/novelPreviewEditor";
+import { countLikes } from "@/data/count-likes";
+import { hasProfileLikedArticle } from "@/data/get-liked-article";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+
 import { JSONContent } from "novel";
 
 export default async function ViewArticle({
@@ -10,6 +15,8 @@ export default async function ViewArticle({
 }) {
   const supabase = createClient();
 
+  const userProfile = await fetchUserProfile();
+
   const { data, error } = await supabase
     .from("articles")
     .select("*")
@@ -17,13 +24,25 @@ export default async function ViewArticle({
     .single();
 
   if (error) {
-    throw new Error(error.message);
+    redirect("/articles");
   }
+
+  const likes = await countLikes(supabase, params.articleId);
+  const hasLikedArticle = await hasProfileLikedArticle(
+    supabase,
+    userProfile?.id!,
+    params.articleId
+  );
   const initialContent: JSONContent = data.content as unknown as JSONContent;
-  console.log(initialContent);
   return (
     <main className="container flex justify-center px-4 py-12 sm:px-6 lg:px-8">
       <NovelPreviewEditor content={initialContent} />
+      <LikeButton
+        likes={likes!}
+        profileId={userProfile?.id}
+        articleId={params.articleId}
+        initialLiked={hasLikedArticle}
+      />
     </main>
   );
 }

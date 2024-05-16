@@ -1,5 +1,6 @@
 import NovelEditor from "@/components/novelEditor";
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 import { JSONContent } from "novel";
 
 export default async function EditArticle({
@@ -16,10 +17,9 @@ export default async function EditArticle({
     .single();
 
   if (error) {
-    throw new Error(error.message);
+    redirect("/articles");
   }
   const initialContent: JSONContent = data.content as unknown as JSONContent;
-  console.log(initialContent);
   return (
     <main className="container flex justify-center px-4 py-12 sm:px-6 lg:px-8">
       <NovelEditor initialContent={initialContent} />
