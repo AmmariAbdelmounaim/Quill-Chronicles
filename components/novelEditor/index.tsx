@@ -37,6 +37,8 @@ export default function NovelEditor({
     "article",
     initialContent
   );
+  const [text, setText] = useLocalStorage<string>("text", "");
+
   const [saveStatus, setSaveStatus] = useState<"Saved" | "Unsaved">("Unsaved");
   const [openNode, setOpenNode] = useState(false);
   const [openColor, setOpenColor] = useState(false);
@@ -47,6 +49,7 @@ export default function NovelEditor({
 
   const debouncedUpdates = useDebouncedCallback((editor: EditorInstance) => {
     setContent(editor.getJSON());
+    setText(editor.getText());
     setSaveStatus("Saved");
   }, 500);
 

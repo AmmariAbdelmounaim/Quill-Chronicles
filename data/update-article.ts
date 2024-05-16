@@ -5,6 +5,7 @@ import { JSONContent } from "novel";
 export async function updateArticle(
   supabase: SupabaseClient<Database>,
   article: JSONContent,
+  embedding: any[],
   articleId: string,
   userId: string
 ) {
@@ -12,6 +13,8 @@ export async function updateArticle(
     .from("articles")
     .update({
       content: article as unknown as Json,
+      // @ts-ignore
+      embedding,
     })
     .eq("id", articleId)
     .eq("profile_id", userId)

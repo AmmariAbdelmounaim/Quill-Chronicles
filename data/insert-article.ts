@@ -5,6 +5,7 @@ import { JSONContent } from "novel";
 export async function insertArticle(
   supabase: SupabaseClient,
   article: JSONContent,
+  embedding: any[],
   userId: string
 ) {
   const { data: insertArticleData, error: insertArticleError } = await supabase
@@ -12,7 +13,7 @@ export async function insertArticle(
     .insert({
       content: article as unknown as Json,
       profile_id: userId,
-      likes: 0,
+      embedding,
     })
     .select("*")
     .single();
