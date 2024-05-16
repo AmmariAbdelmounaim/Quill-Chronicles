@@ -1,6 +1,5 @@
 import NovelEditor from "@/components/novelEditor";
 import { createClient } from "@/utils/supabase/server";
-import { revalidatePath } from "next/cache";
 import { JSONContent } from "novel";
 
 export default async function EditArticle({
