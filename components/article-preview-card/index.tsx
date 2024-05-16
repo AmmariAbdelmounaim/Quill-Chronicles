@@ -1,29 +1,33 @@
-import { Pencil, Trash2 } from "lucide-react";
+import { Tables } from "@/types/supabase";
+import { formatDate } from "@/utils/format-date";
+import { Pencil } from "lucide-react";
+import Link from "next/link";
+import { JSONContent } from "novel";
+import DeleteArticle from "./delete-article";
 
-export default function ArticlePreviewCard() {
+interface UserArticleProps {
+  article: Tables<"articles">;
+}
+export default function UserArticle({ article }: UserArticleProps) {
+  const articleContent = article.content as JSONContent;
+  const title = articleContent?.content?.[0]?.content?.[0]?.text;
+  const paragraph = articleContent?.content?.[1]?.content?.[0]?.text;
+  const publishedAt = formatDate(article.created_at);
+
   return (
     <article className="rounded-lg flex flex-col justify-between border hover:cursor-pointer  border-gray-200 bg-background p-4 shadow-sm transition-all hover:shadow-md dark:border-gray-800 dark:hover:shadow-lg">
       <div className="space-y-2">
         <h2 className="text-xl font-playfairdisplay font-bold text-foreground ">
-          Mastering the Art of Minimalist Web Design
+          {title}
         </h2>
-        <p className="text-muted-foreground ">Published on April 15, 2023</p>
-        <p className="line-clamp-3 text-muted-foreground ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos ad
-          eveniet temporibus molestias ex? Recusandae odio reprehenderit
-          quisquam libero voluptate quam iure aliquam? Numquam porro doloribus
-          consectetur eaque ut dolorum soluta accusantium autem in nam deserunt
-          excepturi quo facere sunt consequuntur quaerat ducimus dolor at quae
-          nemo, rem sit ex?
-        </p>
+        <p className="text-muted-foreground ">{publishedAt}</p>
+        <p className="line-clamp-3 text-muted-foreground ">{paragraph}</p>
       </div>
       <div className="mt-4 flex gap-4 justify-end items-center">
-        <button>
+        <Link href={`/edit-article/${article.id}`}>
           <Pencil className="size-5 stroke-primary opacity-80 hover:opacity-100" />
-        </button>
-        <button>
-          <Trash2 className="size-5 stroke-red-600 opacity-80 hover:opacity-100" />
-        </button>
+        </Link>
+        <DeleteArticle articleId={article.id} />
       </div>
     </article>
   );
