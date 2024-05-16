@@ -19,10 +19,12 @@ export async function publishArticle(
       userId
     );
 
-    if (insertArticleData) {
+    if (insertArticleError) {
+      console.error(insertArticleData);
+
       return { error: "Error publishing your article" };
     }
-    if (insertArticleError) {
+    if (insertArticleData) {
       return {
         success: "Article published successfuly",
         articleId: insertArticleData.id,
@@ -39,6 +41,7 @@ export async function publishArticle(
     );
 
     if (updateArticleError) {
+      console.error(updateArticleError);
       return { error: "Error updating your article" };
     }
     if (updateArticleData) {
