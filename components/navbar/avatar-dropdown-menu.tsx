@@ -11,12 +11,21 @@ import {
 import { getInitials } from "@/utils/get-initials";
 import { Tables } from "@/types/supabase";
 import { signOut } from "@/actions/auth/sign-out";
+import Link from "next/link";
+import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 interface AvatarDropDownMenuProps {
   user: Tables<"profiles">;
 }
 
 export default function AvatarDropDownMenu({ user }: AvatarDropDownMenuProps) {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    await signOut();
+    router.refresh();
+  };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -30,15 +39,13 @@ export default function AvatarDropDownMenu({ user }: AvatarDropDownMenuProps) {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>{user.full_name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={async () => {
-            await signOut();
-          }}
-        >
-          Sign Out
+        <DropdownMenuItem>
+          <Link href="/articles">Articles</Link>
         </DropdownMenuItem>
+
+        <DropdownMenuItem onClick={handleLogout}>Sign Out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
