@@ -1,10 +1,10 @@
 "use client";
 
 import {
+  createContext,
   type Dispatch,
   type ReactNode,
   type SetStateAction,
-  createContext,
 } from "react";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
@@ -35,8 +35,8 @@ export default function Providers({ children }: { children: ReactNode }) {
         }}
       >
         {children}
-        <Toaster />
       </AppContext.Provider>
+      <Toaster />
     </ThemeProvider>
   );
 }
