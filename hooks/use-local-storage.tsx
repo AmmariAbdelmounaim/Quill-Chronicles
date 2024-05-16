@@ -2,25 +2,39 @@ import { useEffect, useState } from "react";
 
 const useLocalStorage = <T,>(
   key: string,
-  initialValue: T
-  // eslint-disable-next-line no-unused-vars
+  initialValue?: T
 ): [T, (value: T) => void] => {
-  const [storedValue, setStoredValue] = useState(initialValue);
+  // Initialize state with value from localStorage or initialValue
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.warn(error);
+      return initialValue;
+    }
+  });
+
+  const setValue = (value: T) => {
+    try {
+      setStoredValue(value);
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.warn(error);
+    }
+  };
 
   useEffect(() => {
-    // Retrieve from localStorage
-    const item = window.localStorage.getItem(key);
-    if (item) {
-      setStoredValue(JSON.parse(item));
+    try {
+      const item = window.localStorage.getItem(key);
+      if (item) {
+        setStoredValue(JSON.parse(item));
+      }
+    } catch (error) {
+      console.warn(error);
     }
   }, [key]);
 
-  const setValue = (value: T) => {
-    // Save state
-    setStoredValue(value);
-    // Save to localStorage
-    window.localStorage.setItem(key, JSON.stringify(value));
-  };
   return [storedValue, setValue];
 };
 
