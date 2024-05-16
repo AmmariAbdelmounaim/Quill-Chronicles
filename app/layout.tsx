@@ -1,3 +1,5 @@
+import { fetchUserProfile } from "@/actions/auth/fetch-user-profile";
+import Navbar from "@/components/navbar";
 import Providers from "@/components/providers";
 import "@/styles/globals.css";
 import "@/styles/prosemirror.css";
@@ -23,11 +25,12 @@ const playfairdisplay = Playfair_Display({
   variable: "--font-playfairdisplay",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const fetchedProfile = await fetchUserProfile();
   return (
     <html
       lang="en"
@@ -38,7 +41,10 @@ export default function RootLayout({
       )}
     >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Navbar profile={fetchedProfile} />
+          {children}
+        </Providers>
       </body>
     </html>
   );
