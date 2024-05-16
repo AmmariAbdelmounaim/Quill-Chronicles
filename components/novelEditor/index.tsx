@@ -23,7 +23,6 @@ import { slashCommand, suggestionItems } from "./slash-command";
 import GenerativeMenuSwitch from "./generative/generative-menu-switch";
 import { handleImageDrop, handleImagePaste } from "novel/plugins";
 import { uploadFn } from "./image-upload";
-import { ScrollArea } from "../ui/scroll-area";
 import { document } from "@/constants/document";
 import useLocalStorage from "@/hooks/use-local-storage";
 
