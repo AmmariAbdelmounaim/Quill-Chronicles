@@ -9,6 +9,7 @@ import {
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/toaster";
 import useLocalStorage from "@/hooks/use-local-storage";
+import { SearchProvider } from "@/context/search-provider";
 
 export const AppContext = createContext<{
   font: string;
@@ -34,7 +35,7 @@ export default function Providers({ children }: { children: ReactNode }) {
           setFont,
         }}
       >
-        {children}
+        <SearchProvider>{children}</SearchProvider>
       </AppContext.Provider>
       <Toaster />
     </ThemeProvider>
