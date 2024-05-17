@@ -1,93 +1,70 @@
-<a href="https://demo-nextjs-with-supabase.vercel.app/">
-  <img alt="Next.js and Supabase Starter Kit - the fastest way to build apps with Next.js and Supabase" src="https://demo-nextjs-with-supabase.vercel.app/opengraph-image.png">
-  <h1 align="center">Next.js and Supabase Starter Kit</h1>
-</a>
+# **Quill Chronicles: A Technical Dive into a Modern Blogging Platform Built in Just 3 Days**
 
-<p align="center">
- The fastest way to build apps with Next.js and Supabase
-</p>
+In the rapidly advancing world of web development, creating dynamic and feature-rich applications requires leveraging the best technologies available. Quill Chronicles is a state-of-the-art blog application that exemplifies this approach, utilizing Next.js for full-stack development and Supabase as its PostgreSQL database. Remarkably, this powerful platform was built in just three days. This article provides a technical overview of Quill Chronicles, highlighting its key features, underlying technologies, and innovative capabilities.
 
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#demo"><strong>Demo</strong></a> ·
-  <a href="#deploy-to-vercel"><strong>Deploy to Vercel</strong></a> ·
-  <a href="#clone-and-run-locally"><strong>Clone and run locally</strong></a> ·
-  <a href="#feedback-and-issues"><strong>Feedback and issues</strong></a>
-  <a href="#more-supabase-examples"><strong>More Examples</strong></a>
-</p>
-<br/>
+![](https://zeyh1gvg08ufcict.public.blob.vercel-storage.com/Screenshot%202024-05-17%20100158-7bKvf8qRQHHldTluKp9oBK0j0c6zZ7.png)
+## **Core Features**
 
-## Features
+### **Authentication**
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Middleware
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+Quill Chronicles offers robust authentication mechanisms, allowing users to sign in using either credentials or OAuth. Google OAuth integration simplifies the login process, enhancing user convenience and security. This is implemented using NextAuth.js, ensuring a seamless and secure authentication flow. Supabase is utilized for managing authentication, providing a streamlined and secure user experience.
 
-## Demo
+### **WYSIWYG Markdown Editor with AI Support**
 
-You can view a fully working demo at [demo-nextjs-with-supabase.vercel.app](https://demo-nextjs-with-supabase.vercel.app/).
+A standout feature of Quill Chronicles is its WYSIWYG Markdown editor, which includes AI support capabilities. This editor allows users to create and format content effortlessly, combining the simplicity of Markdown with the power of a rich text editor. The AI support, powered by OpenAI's GPT models, assists users in generating content, providing suggestions, and enhancing their writing process.
 
-## Deploy to Vercel
+![](https://zeyh1gvg08ufcict.public.blob.vercel-storage.com/b7f09dcf-de9f-4fba-97e5-b27d72aa14d1-4G8v9TfKeU74qhY0DvKHs50DPLeBsT.png)### **Advanced Search by Embeddings**
 
-Vercel deployment will guide you through creating a Supabase account and project.
+Traditional keyword-based search can be limiting, especially when dealing with nuanced content. Quill Chronicles addresses this by implementing a search functionality based on embeddings. By using the Supabase embedding model `gte-small`, and  `pgvector` extension the platform can perform semantic searches, delivering more accurate and contextually relevant results to the users. This approach ensures a deeper understanding of the content and significantly improves the search experience.
 
-After installation of the Supabase integration, all relevant environment variables will be assigned to the project so the deployment is fully functioning.
+![](https://zeyh1gvg08ufcict.public.blob.vercel-storage.com/image-53lBvnlGYpwlJpUIIcyFiN887qT8H0.png)### **Commenting System**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&demo-title=nextjs-with-supabase&demo-description=This%20starter%20configures%20Supabase%20Auth%20to%20use%20cookies%2C%20making%20the%20user's%20session%20available%20throughout%20the%20entire%20Next.js%20app%20-%20Client%20Components%2C%20Server%20Components%2C%20Route%20Handlers%2C%20Server%20Actions%20and%20Middleware.&demo-url=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2F&external-id=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fwith-supabase&demo-image=https%3A%2F%2Fdemo-nextjs-with-supabase.vercel.app%2Fopengraph-image.png&integration-ids=oac_VqOgBHqhEoFTPzGkPd7L0iH6)
+A vibrant blogging platform thrives on user interaction and engagement. Quill Chronicles includes a robust commenting system that allows readers to leave feedback, ask questions, and engage in discussions directly on blog posts. The system supports nested comments, enabling users to reply to specific comments and create threaded conversations. This feature is essential for fostering a sense of community and encouraging active participation from the audience.
 
-The above will also clone the Starter kit to your GitHub, you can clone that locally and develop locally.
+![](https://zeyh1gvg08ufcict.public.blob.vercel-storage.com/image-gDPXwMpyrgqgy28yvAYIdXrAqGI11C.png)## **Technologies and Implementation**
 
-If you wish to just develop locally and not deploy to Vercel, [follow the steps below](#clone-and-run-locally).
+### **Next.js for Full-Stack Development**
 
-## Clone and run locally
+Quill Chronicles leverages Next.js, a React framework, to build a performant and scalable full-stack application. Next.js provides features like server-side rendering (SSR), static site generation (SSG), and API routes, which are crucial for building a responsive and dynamic blog platform. In Quill Chronicles, server actions are predominantly used instead of route handlers, streamlining server-side logic and improving code organization. The framework's seamless integration with React ensures a robust and maintainable codebase.
 
-1. You'll first need a Supabase project which can be made [via the Supabase dashboard](https://database.new)
+### **Supabase for Database, Authentication, and Embeddings**
 
-2. Create a Next.js app using the Supabase Starter template npx command
+Supabase is chosen as the backend solution for Quill Chronicles, offering multiple functionalities:
 
-   ```bash
-   npx create-next-app -e with-supabase
-   ```
+- **Database**: Supabase provides a PostgreSQL database with real-time capabilities. This simplifies database management and offers an intuitive interface for handling data operations. Its real-time subscriptions enable live updates, ensuring that users receive the latest content without needing to refresh the page.
+- **Authentication**: Supabase handles user authentication, providing secure and efficient login mechanisms through credentials and OAuth.
+- **Embeddings**: The Supabase embedding model `gte-small` is used to implement advanced search functionalities. This model allows for semantic search, improving the accuracy and relevance of search results.
 
-3. Use `cd` to change into the app's directory
+### **Tailwind CSS for Styling**
 
-   ```bash
-   cd name-of-new-app
-   ```
+Tailwind CSS is used for styling Quill Chronicles, allowing for rapid and responsive UI development. Tailwind's utility-first approach provides a highly customizable and consistent design system, ensuring that the application remains visually appealing and user-friendly across different devices.
 
-4. Rename `.env.local.example` to `.env.local` and update the following:
+### **ShadCN UI Components**
 
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=[INSERT SUPABASE PROJECT URL]
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=[INSERT SUPABASE PROJECT API ANON KEY]
-   ```
+ShadCN UI components are integrated to enhance the user interface of Quill Chronicles. These components, designed to work seamlessly with Tailwind CSS, provide pre-built, accessible, and customizable UI elements that speed up the development process and maintain a high standard of design consistency.
 
-   Both `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` can be found in [your Supabase project's API settings](https://app.supabase.com/project/_/settings/api)
+## **Running Quill Chronicles Locally**
 
-5. You can now run the Next.js local development server:
+To run Quill Chronicles locally, follow these steps:
 
-   ```bash
-   npm run dev
-   ```
+1. **Clone the Repository**
 
-   The starter kit should now be running on [localhost:3000](http://localhost:3000/).
+   `git clone https://github.com/AmmariAbdelmounaim/full-stack-blog-app.git`
 
-> Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
+2. **Install Dependencies** Ensure you have Node.js and npm installed. Then, install the required dependencies:bash
 
-## Feedback and issues
+   `npm install`
 
-Please file feedback and issues over on the [Supabase GitHub org](https://github.com/supabase/supabase/issues/new/choose).
+3. **Set Up Environment Variables** Create a `.env.local` file in the root directory and add the necessary environment variables. Refer to the `.env.example` file for guidance on the required variables.
 
-## More Supabase examples
+4. **Start the Development Server** Run the following command to start the development server:
 
-- [Next.js Subscription Payments Starter](https://github.com/vercel/nextjs-subscription-payments)
-- [Cookie-based Auth and the Next.js 13 App Router (free course)](https://youtube.com/playlist?list=PL5S4mPUpp4OtMhpnp93EFSo42iQ40XjbF)
-- [Supabase Auth and the Next.js App Router](https://github.com/supabase/supabase/tree/master/examples/auth/nextjs)
+   `npm run dev`
+
+5. **Access the Application** Open your browser and navigate to `http://localhost:3000` to see Quill Chronicles in action.
+
+## **Conclusion**
+
+Quill Chronicles exemplifies the power of modern web technologies in creating a feature-rich and user-friendly blogging platform. By leveraging Next.js, Supabase, Tailwind CSS, and ShadCN UI components, the application delivers a seamless and dynamic user experience. Its advanced features, such as AI-supported WYSIWYG Markdown editing and embedding-based search, set it apart from traditional blogging platforms, making Quill Chronicles a trailblazer in the realm of digital content creation.
+
+Remarkably built in just three days, Quill Chronicles is a testament to the efficiency and capability of modern development tools and frameworks. Whether you're a developer seeking inspiration for your next project or a content creator looking for an intuitive blogging tool, Quill Chronicles offers a glimpse into the future of web applications, where functionality, performance, and user experience converge seamlessly.
