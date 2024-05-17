@@ -32,14 +32,15 @@ const GenerativeMenuSwitch = ({
       }}
       className="flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl"
     >
-      {open && <AISelector open={open} onOpenChange={onOpenChange} />}
+      {/* {open && <AISelector open={open} onOpenChange={onOpenChange} />} */}
       {!open && (
         <Fragment>
           <Button
-            className="gap-1 rounded-none text-purple-500"
+            className="gap-1 rounded-none text-gray-500"
             variant="ghost"
             onClick={() => onOpenChange(true)}
             size="sm"
+            disabled
           >
             <Magic className="h-5 w-5" />
             Ask AI

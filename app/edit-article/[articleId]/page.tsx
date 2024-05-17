@@ -21,7 +21,7 @@ export default async function EditArticle({
   }
   const initialContent: JSONContent = data.content as unknown as JSONContent;
   return (
-    <main className="container flex justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <main className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
       <NovelEditor initialContent={initialContent} />
     </main>
   );
