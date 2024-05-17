@@ -8,6 +8,11 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ["sharp", "onnxruntime-node"],
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
 };
 
 module.exports = nextConfig;
