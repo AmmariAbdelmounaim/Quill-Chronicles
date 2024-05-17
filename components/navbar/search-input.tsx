@@ -18,6 +18,7 @@ export default function SearchInput({ ...props }: SearchInputProps) {
         className="w-[20rem]  pl-[2.2rem]"
         {...props}
         onChange={(e) => setSearchQuery(e.target.value)}
+        placeholder="Don't worry about keywords we use embeddings for search ;)"
       />
     </div>
   );
