@@ -1,7 +1,12 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useEffect, useState, useTransition } from "react"
+import { addComment } from "@/actions/add-comment"
+import { ChevronDownIcon, MessageCircle } from "lucide-react"
+
+import { Tables } from "@/types/supabase"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
   Sheet,
   SheetContent,
@@ -9,18 +14,15 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { ChevronDownIcon, MessageCircle } from "lucide-react";
-import Comments from "./comments";
-import { Tables } from "@/types/supabase";
-import { useEffect, useState, useTransition } from "react";
-import { addComment } from "@/actions/add-comment";
-import { useToast } from "../ui/use-toast";
+} from "@/components/ui/sheet"
+
+import { useToast } from "../ui/use-toast"
+import Comments from "./comments"
 
 interface CommentButtonProps {
-  comments: Tables<"comments">[] | null;
-  profileId: string | null;
-  articleId: string;
+  comments: Tables<"comments">[] | null
+  profileId: string | null
+  articleId: string
 }
 
 export function CommentButton({
@@ -28,22 +30,22 @@ export function CommentButton({
   profileId,
   articleId,
 }: CommentButtonProps) {
-  const [comment, setComment] = useState<string>("");
-  const [isPending, startTransition] = useTransition();
-  const { toast } = useToast();
+  const [comment, setComment] = useState<string>("")
+  const [isPending, startTransition] = useTransition()
+  const { toast } = useToast()
   const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setComment(event.target.value);
-  };
+    setComment(event.target.value)
+  }
 
   const handleCommentSubmit = () => {
     startTransition(async () => {
-      const data = await addComment(comment, profileId!, articleId!);
+      const data = await addComment(comment, profileId!, articleId!)
       if (data?.error) {
-        toast({ variant: "destructive", title: data.error });
+        toast({ variant: "destructive", title: data.error })
       }
-      setComment(""); // Clear the input field after submission
-    });
-  };
+      setComment("") // Clear the input field after submission
+    })
+  }
 
   return (
     <Sheet>
@@ -57,7 +59,7 @@ export function CommentButton({
           <SheetTitle>Responses</SheetTitle>
         </SheetHeader>
         {/* comment section */}
-        <div className="flex py-3 gap-3">
+        <div className="flex gap-3 py-3">
           <Input
             id="comment"
             className="col-span-3"
@@ -69,11 +71,11 @@ export function CommentButton({
           </Button>
         </div>
         {/* display comment */}
-        <div className="flex my-4">
+        <div className="my-4 flex">
           <p className="text-sm font-medium">Recent Comments</p>
         </div>
         <Comments comments={comments} />
       </SheetContent>
     </Sheet>
-  );
+  )
 }

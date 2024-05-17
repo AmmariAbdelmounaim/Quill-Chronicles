@@ -1,12 +1,12 @@
-import { CheckCircleIcon } from "lucide-react";
+import { CheckCircleIcon } from "lucide-react"
 
 interface FormSuccessProps {
-  message?: string;
+  message?: string
 }
 
 function FormSuccess({ message }: FormSuccessProps) {
   if (!message) {
-    return null;
+    return null
   }
 
   return (
@@ -14,6 +14,6 @@ function FormSuccess({ message }: FormSuccessProps) {
       <CheckCircleIcon className="h-4 w-4" />
       <p>{message}</p>
     </div>
-  );
+  )
 }
-export default FormSuccess;
+export default FormSuccess

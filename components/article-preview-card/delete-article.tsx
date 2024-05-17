@@ -1,4 +1,8 @@
-"use client";
+"use client"
+
+import { useTransition } from "react"
+import { removeArticle } from "@/actions/remove-article"
+import { Trash2 } from "lucide-react"
 
 import {
   AlertDialog,
@@ -10,34 +14,32 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Trash2 } from "lucide-react";
-import { useTransition } from "react";
-import { useToast } from "../ui/use-toast";
-import { removeArticle } from "@/actions/remove-article";
+} from "@/components/ui/alert-dialog"
+
+import { useToast } from "../ui/use-toast"
 
 interface DeleteArticleProps {
-  articleId: string;
+  articleId: string
 }
 
 export default function DeleteArticle({ articleId }: DeleteArticleProps) {
-  const [isPending, startTransition] = useTransition();
-  const { toast } = useToast();
+  const [isPending, startTransition] = useTransition()
+  const { toast } = useToast()
 
   const handleDeleteArticle = (articleId: string) => {
     startTransition(async () => {
-      const data = await removeArticle(articleId);
+      const data = await removeArticle(articleId)
       if (data.error) {
         toast({
           variant: "destructive",
           title: data.error,
-        });
+        })
       }
       toast({
         title: data.success,
-      });
-    });
-  };
+      })
+    })
+  }
   return (
     <AlertDialog>
       <AlertDialogTrigger>
@@ -59,5 +61,5 @@ export default function DeleteArticle({ articleId }: DeleteArticleProps) {
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
+  )
 }

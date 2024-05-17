@@ -1,5 +1,14 @@
-"use client";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+"use client"
+
+import { useTransition } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { signOut } from "@/actions/auth/sign-out"
+import { getInitials } from "@/utils/get-initials"
+
+import { Tables } from "@/types/supabase"
+
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,25 +16,19 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { getInitials } from "@/utils/get-initials";
-import { Tables } from "@/types/supabase";
-import { signOut } from "@/actions/auth/sign-out";
-import Link from "next/link";
-import { useTransition } from "react";
-import { useRouter } from "next/navigation";
+} from "../ui/dropdown-menu"
 
 interface AvatarDropDownMenuProps {
-  user: Tables<"profiles">;
+  user: Tables<"profiles">
 }
 
 export default function AvatarDropDownMenu({ user }: AvatarDropDownMenuProps) {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleLogout = async () => {
-    await signOut();
-    router.refresh();
-  };
+    await signOut()
+    router.refresh()
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -48,5 +51,5 @@ export default function AvatarDropDownMenu({ user }: AvatarDropDownMenuProps) {
         <DropdownMenuItem onClick={handleLogout}>Sign Out</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }

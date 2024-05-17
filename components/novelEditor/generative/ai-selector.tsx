@@ -1,53 +1,55 @@
-"use client";
+"use client"
 
-import { Command, CommandInput } from "@/components/ui/command";
+import { useEffect, useState } from "react"
+import { useCompletion } from "ai/react"
+import { ArrowUp } from "lucide-react"
+import { useEditor } from "novel"
+import { addAIHighlight } from "novel/extensions"
+import Markdown from "react-markdown"
+import { toast } from "sonner"
 
-import { useCompletion } from "ai/react";
-import { toast } from "sonner";
-import { useEditor } from "novel";
-import { useEffect, useState } from "react";
-import Markdown from "react-markdown";
-import AISelectorCommands from "./ai-selector-commands";
-import AICompletionCommands from "./ai-completion-command";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
-import { ArrowUp } from "lucide-react";
-import Magic from "@/components/ui/icons/magic";
-import CrazySpinner from "@/components/ui/icons/crazy-spinner";
-import { addAIHighlight } from "novel/extensions";
+import { Button } from "@/components/ui/button"
+import { Command, CommandInput } from "@/components/ui/command"
+import CrazySpinner from "@/components/ui/icons/crazy-spinner"
+import Magic from "@/components/ui/icons/magic"
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+import AICompletionCommands from "./ai-completion-command"
+import AISelectorCommands from "./ai-selector-commands"
+
 //TODO: I think it makes more sense to create a custom Tiptap extension for this functionality https://tiptap.dev/docs/editor/ai/introduction
 
 interface AISelectorProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
 export function AISelector({ open, onOpenChange }: AISelectorProps) {
-  const { editor } = useEditor();
-  const [inputValue, setInputValue] = useState("");
+  const { editor } = useEditor()
+  const [inputValue, setInputValue] = useState("")
 
   const { completion, complete, isLoading } = useCompletion({
     // id: "novel",
     api: "/api/generate",
     onResponse: (response) => {
       if (response.status === 429) {
-        toast.error("You have reached your request limit for the day.");
-        return;
+        toast.error("You have reached your request limit for the day.")
+        return
       }
     },
     onError: (e) => {
-      toast.error(e.message);
+      toast.error(e.message)
     },
-  });
+  })
 
-  const hasCompletion = completion.length > 0;
+  const hasCompletion = completion.length > 0
 
   return (
     <Command className="w-[350px]">
       {hasCompletion && (
         <div className="flex max-h-[400px]">
           <ScrollArea>
-            <div className="prose p-2 px-4 prose-sm">
+            <div className="prose prose-sm p-2 px-4">
               <Markdown>{completion}</Markdown>
             </div>
           </ScrollArea>
@@ -84,16 +86,16 @@ export function AISelector({ open, onOpenChange }: AISelectorProps) {
                 if (completion)
                   return complete(completion, {
                     body: { option: "zap", command: inputValue },
-                  }).then(() => setInputValue(""));
+                  }).then(() => setInputValue(""))
 
-                const slice = editor!.state.selection.content();
+                const slice = editor!.state.selection.content()
                 const text = editor!.storage.markdown.serializer.serialize(
-                  slice.content,
-                );
+                  slice.content
+                )
 
                 complete(text, {
                   body: { option: "zap", command: inputValue },
-                }).then(() => setInputValue(""));
+                }).then(() => setInputValue(""))
               }}
             >
               <ArrowUp className="h-4 w-4" />
@@ -102,8 +104,8 @@ export function AISelector({ open, onOpenChange }: AISelectorProps) {
           {hasCompletion ? (
             <AICompletionCommands
               onDiscard={() => {
-                editor!.chain().unsetHighlight().focus().run();
-                onOpenChange(false);
+                editor!.chain().unsetHighlight().focus().run()
+                onOpenChange(false)
               }}
               completion={completion}
             />
@@ -117,5 +119,5 @@ export function AISelector({ open, onOpenChange }: AISelectorProps) {
         </>
       )}
     </Command>
-  );
+  )
 }

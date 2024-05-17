@@ -1,8 +1,8 @@
-import { cn } from "@/utils/tailwind-merge";
+import { cn } from "@/utils/tailwind-merge"
 
 interface HeaderProps {
-  label?: string;
-  header?: string;
+  label?: string
+  header?: string
 }
 
 export default function Header({ label, header }: HeaderProps) {
@@ -11,5 +11,5 @@ export default function Header({ label, header }: HeaderProps) {
       <h1 className={cn("text-3xl font-semibold")}>{header}</h1>
       <p className="text-sm text-muted-foreground">{label}</p>
     </div>
-  );
+  )
 }

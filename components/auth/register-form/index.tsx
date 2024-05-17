@@ -1,12 +1,13 @@
-"use client";
+"use client"
 
-import React, { useState, useTransition } from "react";
-import { RegisterSchema } from "@/schemas";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+import React, { useState, useTransition } from "react"
+import { signUp } from "@/actions/auth/sign-up"
+import { RegisterSchema } from "@/schemas"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -14,11 +15,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { signUp } from "@/actions/auth/sign-up";
-import FormError from "../form-error";
-import FormSuccess from "../form-success";
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+
+import FormError from "../form-error"
+import FormSuccess from "../form-success"
 
 export default function RegisterForm() {
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -28,27 +29,27 @@ export default function RegisterForm() {
       password: "",
       name: "",
     },
-  });
+  })
 
-  const [isPending, startTransition] = useTransition();
+  const [isPending, startTransition] = useTransition()
 
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
+  const [error, setError] = useState<string>("")
+  const [success, setSuccess] = useState<string>("")
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    setError("");
-    setSuccess("");
+    setError("")
+    setSuccess("")
     startTransition(() => {
       signUp({ values }).then((data) => {
         if (data?.error) {
-          setError(data.error);
+          setError(data.error)
         }
         if (data?.success) {
-          setSuccess(data.success);
+          setSuccess(data.success)
         }
-      });
-    });
-  };
+      })
+    })
+  }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -115,5 +116,5 @@ export default function RegisterForm() {
         </Button>
       </form>
     </Form>
-  );
+  )
 }

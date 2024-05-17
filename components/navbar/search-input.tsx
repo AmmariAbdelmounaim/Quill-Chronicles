@@ -1,19 +1,20 @@
-"use client";
+"use client"
 
-import { Input } from "@/components/ui/input";
-import { useSearch } from "@/hooks/use-search";
-import { Search } from "lucide-react";
-import { InputHTMLAttributes } from "react";
-import { useDebounce } from "use-debounce";
+import { InputHTMLAttributes } from "react"
+import { Search } from "lucide-react"
+import { useDebounce } from "use-debounce"
+
+import { useSearch } from "@/hooks/use-search"
+import { Input } from "@/components/ui/input"
 
 interface SearchInputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 export default function SearchInput({ ...props }: SearchInputProps) {
-  const { setSearchQuery } = useSearch();
+  const { setSearchQuery } = useSearch()
 
   return (
-    <div className="hidden relative w-full sm:block ">
-      <Search className="absolute stroke-gray-500 left-2 top-5 -translate-y-1/2 transform" />
+    <div className="relative hidden w-full sm:block ">
+      <Search className="absolute left-2 top-5 -translate-y-1/2 transform stroke-gray-500" />
       <Input
         className="w-[26rem]  pl-[2.2rem]"
         {...props}
@@ -21,5 +22,5 @@ export default function SearchInput({ ...props }: SearchInputProps) {
         placeholder="Don't worry about keywords we use embeddings for search ;)"
       />
     </div>
-  );
+  )
 }

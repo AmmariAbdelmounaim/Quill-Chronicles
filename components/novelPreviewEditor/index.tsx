@@ -1,17 +1,18 @@
-"use client";
+"use client"
 
-import { EditorContent, EditorRoot, JSONContent } from "novel";
-import { ImageResizer } from "novel/extensions";
-import { defaultExtensions } from "../novelEditor/extensions";
+import { EditorContent, EditorRoot, JSONContent } from "novel"
+import { ImageResizer } from "novel/extensions"
+
+import { defaultExtensions } from "../novelEditor/extensions"
 
 interface NovelPreviewEditorProps {
-  content: JSONContent;
+  content: JSONContent
 }
 
 export default function NovelPreviewEditor({
   content,
 }: NovelPreviewEditorProps) {
-  const extensions = [...defaultExtensions];
+  const extensions = [...defaultExtensions]
 
   return (
     <div className="relative w-full max-w-screen-lg ">
@@ -32,5 +33,5 @@ export default function NovelPreviewEditor({
         </EditorRoot>
       )}
     </div>
-  );
+  )
 }

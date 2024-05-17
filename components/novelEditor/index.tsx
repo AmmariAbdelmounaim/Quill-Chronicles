@@ -1,33 +1,35 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { useDebouncedCallback } from "use-debounce";
-import {
-  EditorRoot,
-  EditorCommand,
-  EditorCommandItem,
-  EditorCommandEmpty,
-  EditorContent,
-  type JSONContent,
-  EditorInstance,
-  EditorCommandList,
-} from "novel";
-import { ImageResizer, handleCommandNavigation } from "novel/extensions";
-import { defaultExtensions } from "./extensions";
-import { Separator } from "@/components/ui/separator";
-import { NodeSelector } from "./selectors/node-selector";
-import { LinkSelector } from "./selectors/link-selector";
-import { ColorSelector } from "./selectors/color-selector";
+"use client"
 
-import { TextButtons } from "./selectors/text-buttons";
-import { slashCommand, suggestionItems } from "./slash-command";
-import GenerativeMenuSwitch from "./generative/generative-menu-switch";
-import { handleImageDrop, handleImagePaste } from "novel/plugins";
-import { uploadFn } from "./image-upload";
-import { document } from "@/constants/document";
-import useLocalStorage from "@/hooks/use-local-storage";
+import React, { useEffect, useState } from "react"
+import { document } from "@/constants/document"
+import {
+  EditorCommand,
+  EditorCommandEmpty,
+  EditorCommandItem,
+  EditorCommandList,
+  EditorContent,
+  EditorInstance,
+  EditorRoot,
+  type JSONContent,
+} from "novel"
+import { handleCommandNavigation, ImageResizer } from "novel/extensions"
+import { handleImageDrop, handleImagePaste } from "novel/plugins"
+import { useDebouncedCallback } from "use-debounce"
+
+import useLocalStorage from "@/hooks/use-local-storage"
+import { Separator } from "@/components/ui/separator"
+
+import { defaultExtensions } from "./extensions"
+import GenerativeMenuSwitch from "./generative/generative-menu-switch"
+import { uploadFn } from "./image-upload"
+import { ColorSelector } from "./selectors/color-selector"
+import { LinkSelector } from "./selectors/link-selector"
+import { NodeSelector } from "./selectors/node-selector"
+import { TextButtons } from "./selectors/text-buttons"
+import { slashCommand, suggestionItems } from "./slash-command"
 
 interface NovelEditorProps {
-  initialContent?: JSONContent;
+  initialContent?: JSONContent
 }
 
 export default function NovelEditor({
@@ -36,22 +38,22 @@ export default function NovelEditor({
   const [content, setContent] = useLocalStorage<JSONContent>(
     "article",
     initialContent
-  );
-  const [text, setText] = useLocalStorage<string>("text", "");
+  )
+  const [text, setText] = useLocalStorage<string>("text", "")
 
-  const [saveStatus, setSaveStatus] = useState<"Saved" | "Unsaved">("Unsaved");
-  const [openNode, setOpenNode] = useState(false);
-  const [openColor, setOpenColor] = useState(false);
-  const [openLink, setOpenLink] = useState(false);
-  const [openAI, setOpenAI] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<"Saved" | "Unsaved">("Unsaved")
+  const [openNode, setOpenNode] = useState(false)
+  const [openColor, setOpenColor] = useState(false)
+  const [openLink, setOpenLink] = useState(false)
+  const [openAI, setOpenAI] = useState(false)
 
-  const extensions = [...defaultExtensions, slashCommand];
+  const extensions = [...defaultExtensions, slashCommand]
 
   const debouncedUpdates = useDebouncedCallback((editor: EditorInstance) => {
-    setContent(editor.getJSON());
-    setText(editor.getText());
-    setSaveStatus("Saved");
-  }, 500);
+    setContent(editor.getJSON())
+    setText(editor.getText())
+    setSaveStatus("Saved")
+  }, 500)
 
   return (
     <div className="relative w-full max-w-screen-lg ">
@@ -60,8 +62,8 @@ export default function NovelEditor({
           <EditorContent
             initialContent={content}
             onCreate={({ editor }) => {
-              debouncedUpdates(editor);
-              setSaveStatus("Unsaved");
+              debouncedUpdates(editor)
+              setSaveStatus("Unsaved")
             }}
             extensions={extensions}
             className="relative min-h-[500px] w-full max-w-screen-lg  bg-background sm:mb-3 sm:rounded-lg  "
@@ -78,8 +80,8 @@ export default function NovelEditor({
               },
             }}
             onUpdate={({ editor }) => {
-              debouncedUpdates(editor);
-              setSaveStatus("Unsaved");
+              debouncedUpdates(editor)
+              setSaveStatus("Unsaved")
             }}
             slotAfter={<ImageResizer />}
           >
@@ -124,5 +126,5 @@ export default function NovelEditor({
         </EditorRoot>
       )}
     </div>
-  );
+  )
 }

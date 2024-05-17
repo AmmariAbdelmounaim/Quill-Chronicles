@@ -1,19 +1,22 @@
-"use client";
-import { Button } from "@/components/ui/button";
+"use client"
+
+import { ReactNode } from "react"
+
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import Header from "../auth/header";
-import Social from "../auth/social";
-import RegisterForm from "../auth/register-form";
-import { ReactNode } from "react";
+} from "@/components/ui/dialog"
+
+import Header from "../auth/header"
+import RegisterForm from "../auth/register-form"
+import Social from "../auth/social"
 
 interface SignUpDialogProps {
-  children?: ReactNode;
+  children?: ReactNode
 }
 
 export default function SignUpDialog({ children }: SignUpDialogProps) {
@@ -32,5 +35,5 @@ export default function SignUpDialog({ children }: SignUpDialogProps) {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

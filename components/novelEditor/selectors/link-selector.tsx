@@ -1,49 +1,50 @@
-import { useEditor } from "novel";
-import { Check, Trash } from "lucide-react";
 import {
+  useEffect,
+  useRef,
   type Dispatch,
   type FC,
   type SetStateAction,
-  useEffect,
-  useRef,
-} from "react";
-import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
-import { Button } from "@/components/ui/button";
-import { PopoverContent } from "@/components/ui/popover";
-import { cn } from "@/utils/tailwind-merge";
+} from "react"
+import { cn } from "@/utils/tailwind-merge"
+import { Popover, PopoverTrigger } from "@radix-ui/react-popover"
+import { Check, Trash } from "lucide-react"
+import { useEditor } from "novel"
+
+import { Button } from "@/components/ui/button"
+import { PopoverContent } from "@/components/ui/popover"
 
 export function isValidUrl(url: string) {
   try {
-    new URL(url);
-    return true;
+    new URL(url)
+    return true
   } catch (e) {
-    return false;
+    return false
   }
 }
 export function getUrlFromString(str: string) {
-  if (isValidUrl(str)) return str;
+  if (isValidUrl(str)) return str
   try {
     if (str.includes(".") && !str.includes(" ")) {
-      return new URL(`https://${str}`).toString();
+      return new URL(`https://${str}`).toString()
     }
   } catch (e) {
-    return null;
+    return null
   }
 }
 interface LinkSelectorProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
 }
 
 export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const { editor } = useEditor();
+  const inputRef = useRef<HTMLInputElement>(null)
+  const { editor } = useEditor()
 
   // Autofocus on input by default
   useEffect(() => {
-    inputRef.current && inputRef.current?.focus();
-  });
-  if (!editor) return null;
+    inputRef.current && inputRef.current?.focus()
+  })
+  if (!editor) return null
 
   return (
     <Popover modal={true} open={open} onOpenChange={onOpenChange}>
@@ -66,11 +67,11 @@ export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
       <PopoverContent align="start" className="w-60 p-0" sideOffset={10}>
         <form
           onSubmit={(e) => {
-            const target = e.currentTarget as HTMLFormElement;
-            e.preventDefault();
-            const input = target[0] as HTMLInputElement;
-            const url = getUrlFromString(input.value);
-            url && editor.chain().focus().setLink({ href: url }).run();
+            const target = e.currentTarget as HTMLFormElement
+            e.preventDefault()
+            const input = target[0] as HTMLInputElement
+            const url = getUrlFromString(input.value)
+            url && editor.chain().focus().setLink({ href: url }).run()
           }}
           className="flex  p-1 "
         >
@@ -88,7 +89,7 @@ export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
               type="button"
               className="flex h-8 items-center rounded-sm p-1 text-red-600 transition-all hover:bg-red-100 dark:hover:bg-red-800"
               onClick={() => {
-                editor.chain().focus().unsetLink().run();
+                editor.chain().focus().unsetLink().run()
               }}
             >
               <Trash className="h-4 w-4" />
@@ -101,5 +102,5 @@ export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
         </form>
       </PopoverContent>
     </Popover>
-  );
-};
+  )
+}

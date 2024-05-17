@@ -1,9 +1,11 @@
-"use client";
-import { Tables } from "@/types/supabase";
-import SingleComment from "./single-comment";
+"use client"
+
+import { Tables } from "@/types/supabase"
+
+import SingleComment from "./single-comment"
 
 interface CommentsProps {
-  comments: Tables<"comments">[] | null;
+  comments: Tables<"comments">[] | null
 }
 
 export default function Comments({ comments }: CommentsProps) {
@@ -14,5 +16,5 @@ export default function Comments({ comments }: CommentsProps) {
           <SingleComment key={comment.id} comment={comment} />
         ))}
     </div>
-  );
+  )
 }

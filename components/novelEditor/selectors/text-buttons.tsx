@@ -1,19 +1,21 @@
-import { EditorBubbleItem, useEditor } from "novel";
+import { cn } from "@/utils/tailwind-merge"
 import {
   BoldIcon,
-  ItalicIcon,
-  UnderlineIcon,
-  StrikethroughIcon,
   CodeIcon,
-} from "lucide-react";
-import type { SelectorItem } from "./node-selector";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/utils/tailwind-merge";
+  ItalicIcon,
+  StrikethroughIcon,
+  UnderlineIcon,
+} from "lucide-react"
+import { EditorBubbleItem, useEditor } from "novel"
+
+import { Button } from "@/components/ui/button"
+
+import type { SelectorItem } from "./node-selector"
 
 export const TextButtons = () => {
-  const { editor } = useEditor();
+  const { editor } = useEditor()
 
-  if (!editor) return null;
+  if (!editor) return null
 
   const items: SelectorItem[] = [
     {
@@ -46,14 +48,14 @@ export const TextButtons = () => {
       command: (editor) => editor!.chain().focus().toggleCode().run(),
       icon: CodeIcon,
     },
-  ];
+  ]
   return (
     <div className="flex">
       {items.map((item, index) => (
         <EditorBubbleItem
           key={index}
           onSelect={(editor) => {
-            item.command(editor);
+            item.command(editor)
           }}
         >
           <Button size="sm" className="rounded-none" variant="ghost">
@@ -66,5 +68,5 @@ export const TextButtons = () => {
         </EditorBubbleItem>
       ))}
     </div>
-  );
-};
+  )
+}

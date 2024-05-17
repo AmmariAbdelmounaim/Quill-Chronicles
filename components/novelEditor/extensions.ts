@@ -1,29 +1,28 @@
+import { cx } from "class-variance-authority"
 import {
+  AIHighlight,
+  HorizontalRule,
+  Placeholder,
+  StarterKit,
+  TaskItem,
+  TaskList,
   TiptapImage,
   TiptapLink,
   UpdatedImage,
-  TaskList,
-  TaskItem,
-  HorizontalRule,
-  StarterKit,
-  Placeholder,
-  AIHighlight,
-} from "novel/extensions";
-import { UploadImagesPlugin } from "novel/plugins";
-
-import { cx } from "class-variance-authority";
+} from "novel/extensions"
+import { UploadImagesPlugin } from "novel/plugins"
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
-const aiHighlight = AIHighlight;
+const aiHighlight = AIHighlight
 //You can overwrite the placeholder with your own configuration
-const placeholder = Placeholder;
+const placeholder = Placeholder
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
     class: cx(
-      "text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer",
+      "text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer"
     ),
   },
-});
+})
 
 const tiptapImage = TiptapImage.extend({
   addProseMirrorPlugins() {
@@ -31,38 +30,38 @@ const tiptapImage = TiptapImage.extend({
       UploadImagesPlugin({
         imageClass: cx("opacity-40 rounded-lg border border-stone-200"),
       }),
-    ];
+    ]
   },
 }).configure({
   allowBase64: true,
   HTMLAttributes: {
     class: cx("rounded-lg border border-muted"),
   },
-});
+})
 
 const updatedImage = UpdatedImage.configure({
   HTMLAttributes: {
     class: cx("rounded-lg border border-muted"),
   },
-});
+})
 
 const taskList = TaskList.configure({
   HTMLAttributes: {
     class: cx("not-prose pl-2 "),
   },
-});
+})
 const taskItem = TaskItem.configure({
   HTMLAttributes: {
     class: cx("flex gap-2 items-start my-4"),
   },
   nested: true,
-});
+})
 
 const horizontalRule = HorizontalRule.configure({
   HTMLAttributes: {
     class: cx("mt-4 mb-6 border-t border-muted-foreground"),
   },
-});
+})
 
 const starterKit = StarterKit.configure({
   bulletList: {
@@ -88,7 +87,7 @@ const starterKit = StarterKit.configure({
   codeBlock: {
     HTMLAttributes: {
       class: cx(
-        "rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium",
+        "rounded-md bg-muted text-muted-foreground border p-5 font-mono font-medium"
       ),
     },
   },
@@ -104,7 +103,7 @@ const starterKit = StarterKit.configure({
     width: 4,
   },
   gapcursor: false,
-});
+})
 
 export const defaultExtensions = [
   starterKit,
@@ -116,4 +115,4 @@ export const defaultExtensions = [
   taskItem,
   horizontalRule,
   aiHighlight,
-];
+]

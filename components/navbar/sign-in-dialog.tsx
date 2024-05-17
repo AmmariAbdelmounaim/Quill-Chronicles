@@ -1,15 +1,17 @@
-"use client";
-import { Button } from "@/components/ui/button";
+"use client"
+
+import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import Header from "../auth/header";
-import Social from "../auth/social";
-import LoginForm from "../auth/login-form";
+} from "@/components/ui/dialog"
+
+import Header from "../auth/header"
+import LoginForm from "../auth/login-form"
+import Social from "../auth/social"
 
 export default function SignInDialog() {
   return (
@@ -27,5 +29,5 @@ export default function SignInDialog() {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

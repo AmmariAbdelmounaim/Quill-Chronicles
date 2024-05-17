@@ -1,12 +1,12 @@
-import { BsExclamationTriangle } from "react-icons/bs";
+import { BsExclamationTriangle } from "react-icons/bs"
 
 interface FormErrorProps {
-  message?: string;
+  message?: string
 }
 
 function FormError({ message }: FormErrorProps) {
   if (!message) {
-    return null;
+    return null
   }
 
   return (
@@ -14,6 +14,6 @@ function FormError({ message }: FormErrorProps) {
       <BsExclamationTriangle className="h-4 w-4" />
       <p>{message}</p>
     </div>
-  );
+  )
 }
-export default FormError;
+export default FormError

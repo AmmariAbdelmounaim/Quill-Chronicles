@@ -1,33 +1,35 @@
-"use client";
+"use client"
 
-import { ChevronDownIcon } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Tables } from "@/types/supabase";
-import { getInitials } from "@/utils/get-initials";
-import { useEffect, useState } from "react";
-import { fetchCommentData } from "@/actions/fetch-comment";
-import { Skeleton } from "../ui/skeleton";
+import { useEffect, useState } from "react"
+import { fetchCommentData } from "@/actions/fetch-comment"
+import { getInitials } from "@/utils/get-initials"
+import { ChevronDownIcon } from "lucide-react"
+
+import { Tables } from "@/types/supabase"
+
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { Skeleton } from "../ui/skeleton"
 
 interface SingleCommentProps {
-  comment: Tables<"comments">;
+  comment: Tables<"comments">
 }
 
 export default function SingleComment({ comment }: SingleCommentProps) {
-  const [avatarUrl, setAvatarUrl] = useState<string>("");
-  const [fullName, setFullName] = useState<string>("");
-  const [createdAt, setCreatedAt] = useState<string>("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [avatarUrl, setAvatarUrl] = useState<string>("")
+  const [fullName, setFullName] = useState<string>("")
+  const [createdAt, setCreatedAt] = useState<string>("")
+  const [isLoading, setIsLoading] = useState<boolean>(true)
   useEffect(() => {
     const fetchComment = async () => {
-      const data = await fetchCommentData(comment);
-      setAvatarUrl(data?.avatar_url!);
-      setFullName(data?.full_name!);
-      setCreatedAt(data?.createdAt!);
-      setIsLoading(false);
-    };
+      const data = await fetchCommentData(comment)
+      setAvatarUrl(data?.avatar_url!)
+      setFullName(data?.full_name!)
+      setCreatedAt(data?.createdAt!)
+      setIsLoading(false)
+    }
 
-    fetchComment();
-  }, []);
+    fetchComment()
+  }, [])
 
   return (
     <>
@@ -55,5 +57,5 @@ export default function SingleComment({ comment }: SingleCommentProps) {
         </div>
       )}
     </>
-  );
+  )
 }
