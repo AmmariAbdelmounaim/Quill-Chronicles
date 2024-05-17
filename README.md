@@ -2,7 +2,8 @@
 
 In the rapidly advancing world of web development, creating dynamic and feature-rich applications requires leveraging the best technologies available. Quill Chronicles is a state-of-the-art blog application that exemplifies this approach, utilizing Next.js for full-stack development and Supabase as its PostgreSQL database. Remarkably, this powerful platform was built in just three days. This article provides a technical overview of Quill Chronicles, highlighting its key features, underlying technologies, and innovative capabilities.
 
-![](https://zeyh1gvg08ufcict.public.blob.vercel-storage.com/Screenshot%202024-05-17%20100158-7bKvf8qRQHHldTluKp9oBK0j0c6zZ7.png)## **Core Features**
+![](https://zeyh1gvg08ufcict.public.blob.vercel-storage.com/Screenshot%202024-05-17%20100158-7bKvf8qRQHHldTluKp9oBK0j0c6zZ7.png)
+## **Core Features**
 
 ### **Authentication**
 
