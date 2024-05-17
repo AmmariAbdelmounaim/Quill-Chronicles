@@ -15,13 +15,11 @@ export async function fetchArticles(page: number, searchQuery?: string) {
 
   if (searchQuery && searchQuery.length >= 3) {
     filteredArticleIds = await embeddingsSearch(searchQuery);
-    console.log(filteredArticleIds);
     if (filteredArticleIds) {
       // remove duplicates
       const uniqueArticleIds = Array.from(
         new Set(filteredArticleIds.map((article) => article.id))
       );
-      console.log(uniqueArticleIds);
       // retrieve articles
       const response = await supabase
         .from("articles")
@@ -34,9 +32,7 @@ export async function fetchArticles(page: number, searchQuery?: string) {
         .map((id) => unorderedArticles.find((article) => article.id === id))
         .filter((article) => article !== undefined);
 
-      console.log(orderedArticles);
       articles = orderedArticles as Tables<"articles">[];
-      console.log(articles);
       error = response.error;
     }
   } else {
@@ -45,8 +41,6 @@ export async function fetchArticles(page: number, searchQuery?: string) {
       .from("articles")
       .select("*")
       .range((page - 1) * pageSize, page * pageSize - 1);
-
-    console.log(response);
 
     articles = response.data;
     error = response.error;

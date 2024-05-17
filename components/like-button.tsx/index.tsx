@@ -54,7 +54,7 @@ export default function LikeButton({
         </>
       ) : (
         <SignUpDialog>
-          <Button variant="outline" size="icon">
+          <Button variant="ghost" size="icon">
             <Heart className="size-5" /> {likeCount}
           </Button>
         </SignUpDialog>

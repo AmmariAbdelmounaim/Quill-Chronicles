@@ -38,7 +38,6 @@ export default function Navbar({ profile }: NavbarProps) {
     startTransition(async () => {
       const content = JSON.parse(window.localStorage.getItem("article")!);
       const text = JSON.parse(window.localStorage.getItem("text")!);
-      console.log(text);
       const data = await publishArticle(
         content as JSONContent,
         text,

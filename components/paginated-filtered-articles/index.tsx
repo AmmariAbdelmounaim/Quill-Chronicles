@@ -26,9 +26,6 @@ export default function PaginatedArticles() {
       }
     });
   };
-  useEffect(() => {
-    console.log(query);
-  }, [query]);
 
   useEffect(() => {
     loadArticles(page);
