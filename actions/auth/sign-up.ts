@@ -1,23 +1,25 @@
-"use server";
+"use server"
 
-import { headers } from "next/headers";
-import { RegisterSchema } from "@/schemas";
-import z from "zod";
-import { createClient } from "@/utils/supabase/server";
+import { headers } from "next/headers"
+import { RegisterSchema } from "@/schemas"
+import { createClient } from "@/utils/supabase/server"
+import z from "zod"
 
 export async function signUp({
   values,
+  prevUrl,
 }: {
-  values: z.infer<typeof RegisterSchema>;
+  values: z.infer<typeof RegisterSchema>
+  prevUrl: string
 }) {
-  const validatedFields = RegisterSchema.safeParse(values);
+  const validatedFields = RegisterSchema.safeParse(values)
 
   if (!validatedFields.success) {
-    return { error: "Invalid fields!" };
+    return { error: "Invalid fields!" }
   }
-  const origin = headers().get("origin");
-  const { name, email, password } = validatedFields.data;
-  const supabase = createClient();
+  const origin = headers().get("origin")
+  const { name, email, password } = validatedFields.data
+  const supabase = createClient()
 
   const { error } = await supabase.auth.signUp({
     email,
@@ -27,15 +29,15 @@ export async function signUp({
         full_name: name,
         avatar_url: "/avatarURL",
       },
-      emailRedirectTo: `${origin}/auth/callback`,
+      emailRedirectTo: `${origin}/auth/callback?next=${prevUrl}`,
     },
-  });
+  })
 
   if (error) {
-    return { error: "Could not register the user" };
+    return { error: `${error.message}` }
   }
 
   return {
     success: "Check your email to continue the sign-in process",
-  };
+  }
 }

@@ -1,11 +1,11 @@
-"use server";
+"use server"
 
-import { createClient } from "@/utils/supabase/server";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import { redirect } from "next/navigation"
+import { createClient } from "@/utils/supabase/server"
 
-export async function signOut() {
-  const supabase = createClient();
-  await supabase.auth.signOut();
-  return redirect("/");
+// TODO: I should make sure this is secure
+export async function signOut(prevUrl: string) {
+  const supabase = createClient()
+  await supabase.auth.signOut()
+  return redirect(prevUrl)
 }

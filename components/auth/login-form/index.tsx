@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useTransition } from "react"
-import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { signIn } from "@/actions/auth/sign-in"
 import { LoginSchema } from "@/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -32,11 +32,11 @@ export default function LoginForm() {
 
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string>("")
-
+  const prevUrl = usePathname()
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setError("")
     startTransition(() => {
-      signIn({ values })
+      signIn({ values, prevUrl })
         .then((data) => {
           if (data?.error) {
             form.reset()

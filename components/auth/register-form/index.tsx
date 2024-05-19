@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useTransition } from "react"
+import { usePathname } from "next/navigation"
 import { signUp } from "@/actions/auth/sign-up"
 import { RegisterSchema } from "@/schemas"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -32,6 +33,7 @@ export default function RegisterForm() {
   })
 
   const [isPending, startTransition] = useTransition()
+  const prevUrl = usePathname()
 
   const [error, setError] = useState<string>("")
   const [success, setSuccess] = useState<string>("")
@@ -40,7 +42,7 @@ export default function RegisterForm() {
     setError("")
     setSuccess("")
     startTransition(() => {
-      signUp({ values }).then((data) => {
+      signUp({ values, prevUrl }).then((data) => {
         if (data?.error) {
           setError(data.error)
         }

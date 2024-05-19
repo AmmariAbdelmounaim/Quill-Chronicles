@@ -1,8 +1,7 @@
 "use client"
 
-import { useTransition } from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { signOut } from "@/actions/auth/sign-out"
 import { getInitials } from "@/utils/get-initials"
 
@@ -24,9 +23,9 @@ interface AvatarDropDownMenuProps {
 
 export default function AvatarDropDownMenu({ user }: AvatarDropDownMenuProps) {
   const router = useRouter()
-
+  const prevUrl = usePathname()
   const handleLogout = async () => {
-    await signOut()
+    await signOut(prevUrl)
     router.refresh()
   }
   return (
