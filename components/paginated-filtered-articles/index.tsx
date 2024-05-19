@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react"
 import { fetchArticles } from "@/actions/fetch-articles"
 import { formatDate } from "@/utils/format-date"
+import { PlusCircle, PlusIcon } from "lucide-react"
 import { JSONContent } from "novel"
 import { useDebounce } from "use-debounce"
 
@@ -74,9 +75,12 @@ export default function PaginatedArticles() {
         )}
       </div>
       {!isPending && (
-        <Button className="mt-3" onClick={loadMoreArticles}>
-          Show more
-        </Button>
+        <div className="mt-5 flex w-full justify-center">
+          <Button className="group" onClick={loadMoreArticles}>
+            <span className="group-hover:text-white">Show more</span>
+            <PlusCircle className="ml-2 group-hover:stroke-white" />
+          </Button>
+        </div>
       )}
     </div>
   )

@@ -43,7 +43,7 @@ export default function DeleteArticle({ articleId }: DeleteArticleProps) {
   return (
     <AlertDialog>
       <AlertDialogTrigger>
-        <Trash2 className="size-5 stroke-red-600 opacity-80 hover:opacity-100" />
+        <Trash2 className="size-5 stroke-red-600 opacity-80 hover:cursor-pointer hover:opacity-100" />
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

@@ -17,7 +17,7 @@ export default function UserArticle({ article }: UserArticleProps) {
   const publishedAt = formatDate(article.created_at)
 
   return (
-    <article className="flex flex-col justify-between rounded-lg border border-gray-200  bg-background p-4 shadow-sm transition-all hover:cursor-pointer hover:shadow-md dark:border-gray-800 dark:hover:shadow-lg">
+    <article className="flex flex-col justify-between rounded-lg border border-gray-200 bg-background  p-4 shadow-sm transition-all  hover:shadow-md dark:border-gray-800 dark:hover:border-gray-400 dark:hover:shadow-lg">
       <div className="space-y-2">
         <h2 className="font-playfairdisplay text-xl font-bold text-foreground ">
           {title}
@@ -27,7 +27,7 @@ export default function UserArticle({ article }: UserArticleProps) {
       </div>
       <div className="mt-4 flex items-center justify-end gap-4">
         <Link href={`/edit-article/${article.id}`}>
-          <Pencil className="size-5 stroke-primary opacity-80 hover:opacity-100" />
+          <Pencil className="size-5 stroke-primary  opacity-80 hover:cursor-pointer hover:opacity-100" />
         </Link>
         <DeleteArticle articleId={article.id} />
       </div>

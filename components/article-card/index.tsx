@@ -18,7 +18,7 @@ export default function ArticleCard({
   content,
 }: ArticleCardProps) {
   return (
-    <article className="flex flex-col justify-between rounded-lg border border-gray-200  bg-background p-4 shadow-sm transition-all hover:cursor-pointer hover:shadow-md dark:border-gray-800 dark:hover:shadow-lg">
+    <article className="flex flex-col justify-between rounded-lg border border-gray-200 bg-background  p-4 shadow-sm transition-all hover:cursor-pointer hover:shadow-md dark:border-gray-800 hover:dark:border-gray-400 dark:hover:shadow-lg">
       <div className="space-y-2">
         <h2 className="font-playfairdisplay text-xl font-bold text-foreground ">
           {title}
