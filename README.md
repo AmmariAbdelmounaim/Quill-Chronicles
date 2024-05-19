@@ -70,7 +70,7 @@ Remarkably built in just three days, Quill Chronicles is a testament to the effi
 
 
 ## **Todos**
-- [x] Fix auth redirection to prev url
+- [x] ~~Fix auth redirection to prev url~~
 - [ ] Add Generative AI Feature
 - [ ] Remove show more articles if the all the articles are shown
 - [ ] Customize dashboard card to contain the name of the publisher
