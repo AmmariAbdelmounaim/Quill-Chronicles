@@ -42,11 +42,11 @@ export default function LikeButton({
             size="icon"
             onClick={toggleLike}
             disabled={isPending}
-            className="ml-[48px] "
+            className="ml-[48px] p-0.5"
           >
             <Heart
               className={cn(
-                "mr-1 size-5",
+                "mr-1.5 size-8 transition-colors duration-1000",
                 liked && "fill-red-600 stroke-red-600"
               )}
             />
@@ -56,7 +56,7 @@ export default function LikeButton({
       ) : (
         <SignUpDialog>
           <Button variant="ghost" size="icon">
-            <Heart className="size-5" /> {likeCount}
+            <Heart className="size-8" /> {likeCount}
           </Button>
         </SignUpDialog>
       )}

@@ -51,7 +51,7 @@ export default async function ViewArticle({
     <main className="container mx-auto px-4 py-12 sm:px-6 lg:px-8">
       <div className="flex flex-col justify-start">
         <NovelPreviewEditor content={initialContent} />
-        <div className="ml-[48px] flex gap-2">
+        <div className="flex gap-2">
           <LikeButton
             likes={likes!}
             profileId={userProfile?.id}

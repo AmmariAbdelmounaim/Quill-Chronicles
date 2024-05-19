@@ -1,3 +1,5 @@
+import Link from "next/link"
+import { routes } from "@/routes"
 import { PlusCircleIcon } from "lucide-react"
 
 import {
@@ -9,7 +11,10 @@ import {
 
 export default function AddArticleCard() {
   return (
-    <article className="hover group flex min-h-[266px] cursor-pointer  flex-col items-center justify-center rounded-lg border border-gray-200  bg-background p-4 shadow-sm transition-all hover:cursor-pointer hover:shadow-md dark:border-gray-800 dark:hover:border-gray-400 dark:hover:shadow-lg">
+    <Link
+      href={routes.newArticle.path}
+      className="hover group flex min-h-[266px] cursor-pointer  flex-col items-center justify-center rounded-lg border border-gray-200  bg-background p-4 shadow-sm transition-all hover:cursor-pointer hover:shadow-md dark:border-gray-800 dark:hover:border-gray-400 dark:hover:shadow-lg"
+    >
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
@@ -20,6 +25,6 @@ export default function AddArticleCard() {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-    </article>
+    </Link>
   )
 }
