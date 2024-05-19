@@ -68,3 +68,13 @@ To run Quill Chronicles locally, follow these steps:
 Quill Chronicles exemplifies the power of modern web technologies in creating a feature-rich and user-friendly blogging platform. By leveraging Next.js, Supabase, Tailwind CSS, and ShadCN UI components, the application delivers a seamless and dynamic user experience. Its advanced features, such as AI-supported WYSIWYG Markdown editing and embedding-based search, set it apart from traditional blogging platforms, making Quill Chronicles a trailblazer in the realm of digital content creation.
 
 Remarkably built in just three days, Quill Chronicles is a testament to the efficiency and capability of modern development tools and frameworks. Whether you're a developer seeking inspiration for your next project or a content creator looking for an intuitive blogging tool, Quill Chronicles offers a glimpse into the future of web applications, where functionality, performance, and user experience converge seamlessly.
+
+
+## **Todos**
+[] Fix auth redirection to prev url
+[] Remove show more articles if the all the articles are shown
+[] Customize dashboard card to contain the name of the publisher
+[] Add Generative AI Feature
+[] Unit tests
+[] SEO
+[] Document components using storybook
