@@ -27,7 +27,7 @@ export default function UserArticle({ article }: UserArticleProps) {
       </div>
       <div className="mt-4 flex items-center justify-end gap-4">
         <Link href={`/edit-article/${article.id}`}>
-          <Pencil className="size-5 stroke-primary  opacity-80 hover:cursor-pointer hover:opacity-100" />
+          <Pencil className="size-7 stroke-primary  opacity-80 hover:cursor-pointer hover:opacity-100" />
         </Link>
         <DeleteArticle articleId={article.id} />
       </div>
