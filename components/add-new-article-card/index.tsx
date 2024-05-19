@@ -18,7 +18,7 @@ export default function AddArticleCard() {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <PlusCircleIcon className="size-28 fill-background stroke-white opacity-80 group-hover:opacity-100  dark:fill-white dark:stroke-background" />
+            <PlusCircleIcon className="size-28 fill-white stroke-primary opacity-80 group-hover:opacity-100  dark:fill-primary dark:stroke-background" />
           </TooltipTrigger>
           <TooltipContent>
             <p>Create new article</p>
