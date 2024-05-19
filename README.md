@@ -28,7 +28,6 @@ A vibrant blogging platform thrives on user interaction and engagement. Quill Ch
 Quill Chronicles leverages Next.js, a React framework, to build a performant and scalable full-stack application. Next.js provides features like server-side rendering (SSR), static site generation (SSG), and API routes, which are crucial for building a responsive and dynamic blog platform. In Quill Chronicles, server actions are predominantly used instead of route handlers, streamlining server-side logic and improving code organization. The framework's seamless integration with React ensures a robust and maintainable codebase.
 
 ### **Supabase for Database, Authentication, and Embeddings**
-
 Supabase is chosen as the backend solution for Quill Chronicles, offering multiple functionalities:
 
 - **Database**: Supabase provides a PostgreSQL database with real-time capabilities. This simplifies database management and offers an intuitive interface for handling data operations. Its real-time subscriptions enable live updates, ensuring that users receive the latest content without needing to refresh the page.
@@ -71,10 +70,10 @@ Remarkably built in just three days, Quill Chronicles is a testament to the effi
 
 
 ## **Todos**
-[] Fix auth redirection to prev url
-[] Remove show more articles if the all the articles are shown
-[] Customize dashboard card to contain the name of the publisher
-[] Add Generative AI Feature
-[] Unit tests
-[] SEO
-[] Document components using storybook
+- [ ] Fix auth redirection to prev url
+- [ ] Remove show more articles if the all the articles are shown
+- [ ] Customize dashboard card to contain the name of the publisher
+- [ ] Add Generative AI Feature
+- [ ] Unit tests
+- [ ] SEO
+- [ ] Document components using storybook
