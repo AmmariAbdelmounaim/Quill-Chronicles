@@ -59,8 +59,8 @@ export default async function Image({
   ).then((res) => res.arrayBuffer())
 
   // Images
-  const coverImg = fetch(new URL(imageUrl!, import.meta.url)).then((res) =>
-    res.arrayBuffer()
+  const coverImg = fetch(new URL(publisherAvatar!, import.meta.url)).then(
+    (res) => res.arrayBuffer()
   )
   const avatarImg = fetch(new URL(publisherAvatar, import.meta.url)).then(
     (res) => res.arrayBuffer()

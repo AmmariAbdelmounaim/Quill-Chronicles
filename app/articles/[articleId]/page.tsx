@@ -75,50 +75,50 @@ export default async function ViewArticle({
   )
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { articleId: string }
-}): Promise<Metadata> {
-  const article = await fetchArticleData(params.articleId)
-  console.log(article)
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { articleId: string }
+// }): Promise<Metadata> {
+//   const article = await fetchArticleData(params.articleId)
+//   console.log(article)
 
-  const ogParams = new URLSearchParams()
-  ogParams.set("title", article.title)
-  ogParams.set("paragraph", article.paragraph)
-  ogParams.set("publishedAt", article.publishedAt)
-  ogParams.set("likesCount", `${article.likesCount}`)
-  ogParams.set("commentsCount", `${article.commentsCount}`)
-  ogParams.set("publisher", article.publisher)
-  ogParams.set("publisherAvatar", article.publisherAvatar)
-  ogParams.set("imageUrl", article.imageUrl || "")
+//   const ogParams = new URLSearchParams()
+//   ogParams.set("title", article.title)
+//   ogParams.set("paragraph", article.paragraph)
+//   ogParams.set("publishedAt", article.publishedAt)
+//   ogParams.set("likesCount", `${article.likesCount}`)
+//   ogParams.set("commentsCount", `${article.commentsCount}`)
+//   ogParams.set("publisher", article.publisher)
+//   ogParams.set("publisherAvatar", article.publisherAvatar)
+//   ogParams.set("imageUrl", article.imageUrl || "")
 
-  return {
-    title: article.title,
-    description: article.paragraph,
-    authors: [{ name: article.publisher }],
-    alternates: {
-      canonical: `/articles/${params.articleId}`,
-    },
-    openGraph: {
-      title: article.title,
-      description: article.paragraph,
-      type: "article",
-      url: `/articles/${params.articleId}`,
-      images: [
-        {
-          url: `/api/opengraph-image?${ogParams.toString()}`,
-          width: 1200,
-          height: 630,
-          alt: article.title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: article.title,
-      description: article.paragraph,
-      images: [`/api/opengraph-image?${ogParams.toString()}`],
-    },
-  }
-}
+//   return {
+//     title: article.title,
+//     description: article.paragraph,
+//     authors: [{ name: article.publisher }],
+//     alternates: {
+//       canonical: `/articles/${params.articleId}`,
+//     },
+//     openGraph: {
+//       title: article.title,
+//       description: article.paragraph,
+//       type: "article",
+//       url: `/articles/${params.articleId}`,
+//       images: [
+//         {
+//           url: `/api/opengraph-image?${ogParams.toString()}`,
+//           width: 1200,
+//           height: 630,
+//           alt: article.title,
+//         },
+//       ],
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       title: article.title,
+//       description: article.paragraph,
+//       images: [`/api/opengraph-image?${ogParams.toString()}`],
+//     },
+//   }
+// }
