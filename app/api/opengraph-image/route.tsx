@@ -3,6 +3,7 @@
 // @ts-nocheck
 
 import { ImageResponse } from "next/og"
+import { ogImageSchema } from "@/schemas"
 
 // Route segment config
 export const runtime = "edge"
@@ -10,23 +11,31 @@ export const runtime = "edge"
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url)
-    const values = searchParams.parse(Object.fromEntries(url.searchParams))
-    const {
-      title,
-      paragraph,
-      publishedAt,
-      likesCount,
-      commentsCount,
-      publisher,
-      publisherAvatar,
-      imageUrl,
-    } = values
+    // const values = ogImageSchema.parse(Object.fromEntries(url.searchParams))
+    // const {
+    //   title,
+    //   paragraph,
+    //   publishedAt,
+    //   likesCount,
+    //   commentsCount,
+    //   publisher,
+    //   publisherAvatar,
+    //   imageUrl,
+    // } = values
 
-    const hasArticcleId = searchParams.has("articleId")
+    const title = "Understanding Artificial Intelligence"
+    const paragraph =
+      "Artificial Intelligence (AI) is revolutionizing the way we live, work, and interact with technology. By simulating human intelligence, AI systems can perform tasks that typically require human cognition, such as learning, reasoning, problem-solving, and decision-making."
+    const publishedAt = "2024-05-17T07:43:16.452619+00:00"
+    const likesCount = "0"
+    const commentsCount = "1"
+    const publisher = "Ammari Abdelmounaim"
+    const publisherAvatar =
+      "https://lh3.googleusercontent.com/a/ACg8ocJzD16U59XloyKFE4m5iNXktYEw1gPYNqQIPbInMdTyeASxZ6M=s96-c"
+    const imageUrl =
+      "https://lh3.googleusercontent.com/a/ACg8ocJzD16U59XloyKFE4m5iNXktYEw1gPYNqQIPbInMdTyeASxZ6M=s96-c"
 
-    const articleId = hasArticcleId
-      ? searchParams.get("articleId")?.slice(0, 100)
-      : "f27eb044-2d9c-48e6-8bec-c277bfb9254e"
+    console.log(imageUrl)
 
     const imageData = await fetch(new URL(imageUrl, import.meta.url)).then(
       (res) => res.arrayBuffer()
@@ -53,6 +62,13 @@ export async function GET(request: Request) {
     const messageCircleIcon = fetch(
       new URL("../../../assets/message-circle.png", import.meta.url)
     ).then((res) => res.arrayBuffer())
+
+    const coverImg = fetch(new URL(imageUrl, import.meta.url)).then((res) =>
+      res.arrayBuffer()
+    )
+    const avatarImg = fetch(new URL(publisherAvatar, import.meta.url)).then(
+      (res) => res.arrayBuffer()
+    )
 
     return new ImageResponse(
       (
@@ -173,6 +189,7 @@ export async function GET(request: Request) {
                   {paragraph}
                 </p>
               </div>
+              {/* cover image */}
               <div
                 style={{
                   display: "flex",
@@ -180,10 +197,12 @@ export async function GET(request: Request) {
                   borderRadius: "8px",
                   width: "200px",
                   height: "120px",
-                  backgroundColor: "#E5E7EB",
+                  backgroundColor: "#000000",
                   flexGrow: 1,
                 }}
-              ></div>
+              >
+                <img width={200} height={120} src={await coverImg} />
+              </div>
             </div>
             <div
               style={{
