@@ -1,5 +1,6 @@
-import { Database } from "@/types/supabase";
-import { SupabaseClient } from "@supabase/supabase-js";
+import { SupabaseClient } from "@supabase/supabase-js"
+
+import { Database } from "@/types/supabase"
 
 export async function hasProfileLikedArticle(
   supabase: SupabaseClient<Database>,
@@ -11,12 +12,12 @@ export async function hasProfileLikedArticle(
     .select("id")
     .eq("profile_id", profileId)
     .eq("article_id", articleId)
-    .single();
+    .maybeSingle()
 
   if (error) {
-    console.error("Error fetching data:", error);
-    return false;
+    console.error("Error fetching data:", error)
+    return false
   }
 
-  return data ? true : false;
+  return data ? true : false
 }
