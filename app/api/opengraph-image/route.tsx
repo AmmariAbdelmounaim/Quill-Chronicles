@@ -7,29 +7,32 @@ import { ImageResponse } from "next/og"
 // Route segment config
 export const runtime = "edge"
 
-// params for OG Image
-export const size = {
-  width: 1200,
-  height: 630,
-}
-
 export const contentType = "image/png"
 
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url)
+    const url = new URL(request.url)
+    const values = searchParams.parse(Object.fromEntries(url.searchParams))
+    const {
+      title,
+      paragraph,
+      publishedAt,
+      likesCount,
+      commentsCount,
+      publisher,
+      publisherAvatar,
+      imageUrl,
+    } = values
+
     const hasArticcleId = searchParams.has("articleId")
 
     const articleId = hasArticcleId
       ? searchParams.get("articleId")?.slice(0, 100)
       : "f27eb044-2d9c-48e6-8bec-c277bfb9254e"
 
-    const imageData = await fetch(
-      new URL(
-        "https://zeyh1gvg08ufcict.public.blob.vercel-storage.com/b7f09dcf-de9f-4fba-97e5-b27d72aa14d1-4G8v9TfKeU74qhY0DvKHs50DPLeBsT.png",
-        import.meta.url
-      )
-    ).then((res) => res.arrayBuffer())
+    const imageData = await fetch(new URL(imageUrl, import.meta.url)).then(
+      (res) => res.arrayBuffer()
+    )
 
     const fontInterBlack = fetch(
       new URL(
@@ -105,7 +108,7 @@ export async function GET(request: Request) {
                       backgroundColor: "#E5E7EB",
                     }}
                   >
-                    JD
+                    AA
                   </div>
                 </div>
                 <div
@@ -116,10 +119,10 @@ export async function GET(request: Request) {
                   }}
                 >
                   <span style={{ fontWeight: "500", marginTop: "4px" }}>
-                    John Doe
+                    {publisher}
                   </span>
                   <span style={{ fontSize: "14px", color: "#6B7280" }}>
-                    Published on May 23, 2024
+                    Published on {publishedAt}
                   </span>
                 </div>
               </div>
@@ -156,7 +159,7 @@ export async function GET(request: Request) {
                     color: "#2F65FF",
                   }}
                 >
-                  The Future of Web Development: Exploring Cutting-Edge Trends
+                  {title}
                 </h3>
                 <p
                   style={{
@@ -169,12 +172,7 @@ export async function GET(request: Request) {
                     color: "#4B5563",
                   }}
                 >
-                  In this rapidly evolving digital age, web development is
-                  constantly pushing boundaries and embracing new technologies.
-                  From the rise of artificial intelligence and learning the
-                  advent of serverless architectures and progressive web apps,
-                  the future of web development promises to be an exciting and
-                  transformative journey.
+                  {paragraph}
                 </p>
               </div>
               <div
@@ -204,7 +202,7 @@ export async function GET(request: Request) {
                   color: "#2F65FF",
                 }}
               >
-                1,234 views
+                {likesCount}
               </span>
               <img width={16} height={16} src={await messageCircleIcon} />
 
@@ -213,14 +211,13 @@ export async function GET(request: Request) {
                   color: "#2F65FF",
                 }}
               >
-                24 comments
+                {commentsCount} comments
               </span>
             </div>
           </div>
         </div>
       ),
       {
-        ...size,
         fonts: [
           {
             name: "Inter",
