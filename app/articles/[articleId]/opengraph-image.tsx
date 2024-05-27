@@ -59,19 +59,23 @@ export default async function Image({
   ).then((res) => res.arrayBuffer())
 
   // Images
-  // const coverImg = fetch(new URL(publisherAvatar!, import.meta.url)).then(
-  //   (res) => res.arrayBuffer()
-  // )
+  const coverImg = fetch(new URL(publisherAvatar!, import.meta.url)).then(
+    (res) => res.arrayBuffer()
+  )
+
+  console.log(coverImg)
   const avatarImg = fetch(new URL(publisherAvatar, import.meta.url)).then(
     (res) => res.arrayBuffer()
   )
+
+  console.log(avagtarImg)
 
   return new ImageResponse(
     (
       <div
         style={{
           display: "flex",
-          height: "100$",
+          height: "100%",
           width: "100%",
           flexDirection: "column",
           gap: "16px",
@@ -198,7 +202,7 @@ export default async function Image({
                 flexGrow: 1,
               }}
             >
-              <img width={200} height={120} src={await avatarImg} />
+              <img width={200} height={120} src={await coverImg} />
             </div>
           </div>
           <div
@@ -231,6 +235,7 @@ export default async function Image({
         </div>
       </div>
     ),
+    ...size,
     {
       fonts: [
         {
