@@ -59,9 +59,9 @@ export default async function Image({
   ).then((res) => res.arrayBuffer())
 
   // Images
-  const coverImg = fetch(new URL(publisherAvatar!, import.meta.url)).then(
-    (res) => res.arrayBuffer()
-  )
+  // const coverImg = fetch(new URL(publisherAvatar!, import.meta.url)).then(
+  //   (res) => res.arrayBuffer()
+  // )
   const avatarImg = fetch(new URL(publisherAvatar, import.meta.url)).then(
     (res) => res.arrayBuffer()
   )
@@ -198,7 +198,7 @@ export default async function Image({
                 flexGrow: 1,
               }}
             >
-              <img width={200} height={120} src={await coverImg} />
+              <img width={200} height={120} src={await avatarImg} />
             </div>
           </div>
           <div
