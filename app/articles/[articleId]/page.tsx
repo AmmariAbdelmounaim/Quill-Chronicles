@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import { redirect } from "next/navigation"
 import { fetchUserProfile } from "@/actions/auth/fetch-user-profile"
 import { fetchArticleData } from "@/actions/fetch-article-data"
 import { countLikes } from "@/data/count-likes"
@@ -27,7 +28,7 @@ export default async function ViewArticle({
     .single()
 
   if (articleError) {
-    throw new Error(articleError.message)
+    redirect("/")
   }
 
   const { data: commentsData, error: commentsError } = await supabase
@@ -36,7 +37,7 @@ export default async function ViewArticle({
     .eq("article_id", articleData?.id)
 
   if (commentsError) {
-    throw new Error(commentsError.message)
+    redirect("/")
   }
 
   const likes = await countLikes(supabase, params.articleId)
