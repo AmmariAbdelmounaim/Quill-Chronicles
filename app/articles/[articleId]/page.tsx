@@ -48,7 +48,7 @@ export default async function ViewArticle({
   )
 
   const article = await fetchArticleData(params.articleId)
-
+  console.log(article)
   const initialContent: JSONContent =
     articleData.content as unknown as JSONContent
 
