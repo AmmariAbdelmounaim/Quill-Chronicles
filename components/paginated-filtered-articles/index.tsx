@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useTransition } from "react"
+import { articleData, fetchArticleData } from "@/actions/fetch-article-data"
 import { fetchArticles } from "@/actions/fetch-articles"
 import { formatDate } from "@/utils/format-date"
 import { PlusCircle, PlusIcon } from "lucide-react"
@@ -15,7 +16,7 @@ import { SkeletonCard } from "../skeleteon-card"
 import { Button } from "../ui/button"
 
 export default function PaginatedArticles() {
-  const [articles, setArticles] = useState<Tables<"articles">[]>([])
+  const [articlesData, setArticlesData] = useState<articleData[]>([])
   const [page, setPage] = useState<number>(1)
   const [isPending, startTransition] = useTransition()
   const { searchQuery } = useSearch()
@@ -23,9 +24,18 @@ export default function PaginatedArticles() {
 
   const loadArticles = (page: number) => {
     startTransition(async () => {
+      // TOTO: this should be optimized
       const articles = await fetchArticles(page, query)
+      const articlesData: articleData[] = []
       if (articles) {
-        setArticles((prev) => [...prev, ...articles])
+        for (const article of articles) {
+          const articleData = await fetchArticleData(article.id)
+          articlesData.push(articleData)
+        }
+      }
+
+      if (articles) {
+        setArticlesData((prev) => [...prev, ...articlesData])
       }
     })
   }
@@ -36,7 +46,7 @@ export default function PaginatedArticles() {
 
   useEffect(() => {
     setPage(1)
-    setArticles([])
+    setArticlesData([])
   }, [query])
 
   const loadMoreArticles = () => {
@@ -55,21 +65,8 @@ export default function PaginatedArticles() {
           </>
         ) : (
           <>
-            {articles.map((article) => {
-              const articleContent = article.content as JSONContent
-              const title = articleContent?.content?.[0]?.content?.[0]?.text
-              const paragraph = articleContent?.content?.[1]?.content?.[0]?.text
-              const publishedAt = formatDate(article.created_at)
-
-              return (
-                <ArticleCard
-                  articleId={article.id}
-                  title={title!}
-                  content={paragraph!}
-                  createdAt={publishedAt}
-                  key={article.id}
-                />
-              )
+            {articlesData.map((article) => {
+              return <ArticleCard key={article.id} articleData={article} />
             })}
           </>
         )}

@@ -42,6 +42,7 @@ export default async function ViewArticle({
 
   const likes = await countLikes(supabase, params.articleId)
 
+  
   const hasLikedArticle = await hasProfileLikedArticle(
     supabase,
     userProfile?.id!,

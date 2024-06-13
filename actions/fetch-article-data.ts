@@ -8,7 +8,8 @@ import { getImageUrlFromJsonContent } from "@/utils/get-image-url-from-json-cont
 import { createClient } from "@/utils/supabase/server"
 import { JSONContent } from "novel"
 
-interface articleData {
+export interface articleData {
+  id: string
   publisher: string
   publisherAvatar: string
   publishedAt: string
@@ -41,6 +42,7 @@ export async function fetchArticleData(
 
   const article = getArticleData
   const articleContent: JSONContent = article.content as JSONContent
+  articleData.id = articleId
   articleData.title = articleContent?.content?.[0]?.content?.[0]?.text
   articleData.paragraph = articleContent?.content?.[1]?.content?.[0]?.text
   articleData.publishedAt = article.created_at

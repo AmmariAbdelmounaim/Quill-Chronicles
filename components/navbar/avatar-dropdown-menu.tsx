@@ -43,11 +43,17 @@ export default function AvatarDropDownMenu({ user }: AvatarDropDownMenuProps) {
       <DropdownMenuContent>
         <DropdownMenuLabel>{user.full_name}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Link href="/articles">Articles</Link>
+        <DropdownMenuItem className="cursor-pointer">
+          <Link href="/articles" className="w-full">
+            Articles
+          </Link>
         </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={handleLogout}>Sign Out</DropdownMenuItem>
+        <DropdownMenuItem
+          className="w-full cursor-pointer"
+          onClick={handleLogout}
+        >
+          Sign Out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )
