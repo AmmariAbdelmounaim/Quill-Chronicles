@@ -3,7 +3,9 @@
 // @ts-nocheck
 
 import { ImageResponse } from "next/og"
+import { fetchArticle } from "@/actions/fetch-article"
 import { fetchArticleData } from "@/actions/fetch-article-data"
+import { getInitials } from "@/utils/get-initials"
 
 // Route segment config
 export const runtime = "edge"
@@ -17,16 +19,18 @@ export default async function Image({
 }: {
   params: { articleId: string }
 }) {
-  const {
-    title,
-    paragraph,
-    publishedAt,
-    // likesCount,
-    // commentsCount,
-    publisher,
-    // publisherAvatar,
-    // imageUrl,
-  } = await fetchArticleData(params.articleId)
+  // const {
+  //   title,
+  //   paragraph,
+  //   publishedAt,
+  //   // likesCount,
+  //   // commentsCount,
+  //   publisher,
+  //   // publisherAvatar,
+  //   // imageUrl,
+  // } = await fetchArticleData(params.articleId)
+
+  // const {article} = await fetchArticle(params.articleId)
 
   // Fonts
   const fontInterBlack = fetch(
@@ -104,9 +108,7 @@ export default async function Image({
                     borderRadius: "50%",
                     backgroundColor: "#E5E7EB",
                   }}
-                >
-                  AA
-                </div>
+                ></div>
               </div>
               <div
                 style={{
