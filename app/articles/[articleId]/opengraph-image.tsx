@@ -30,8 +30,8 @@ export default async function Image({
     likesCount,
     commentsCount,
     publisher,
-    publisherAvatar,
-    imageUrl,
+    // publisherAvatar,
+    // imageUrl,
   } = await fetchArticleData(params.articleId)
 
   // Fonts
