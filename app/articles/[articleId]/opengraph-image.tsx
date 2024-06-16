@@ -58,18 +58,6 @@ export default async function Image({
     new URL("../../../assets/message-circle.png", import.meta.url)
   ).then((res) => res.arrayBuffer())
 
-  // Images
-  const coverImg = fetch(new URL(publisherAvatar!, import.meta.url)).then(
-    (res) => res.arrayBuffer()
-  )
-
-  console.log(coverImg)
-  const avatarImg = fetch(new URL(publisherAvatar, import.meta.url)).then(
-    (res) => res.arrayBuffer()
-  )
-
-  console.log(avagtarImg)
-
   return new ImageResponse(
     (
       <div
@@ -191,7 +179,8 @@ export default async function Image({
               </p>
             </div>
             {/* cover image */}
-            <div
+
+            {/* <div
               style={{
                 display: "flex",
                 overflow: "hidden",
@@ -203,7 +192,7 @@ export default async function Image({
               }}
             >
               <img width={200} height={120} src={await coverImg} />
-            </div>
+            </div> */}
           </div>
           <div
             style={{

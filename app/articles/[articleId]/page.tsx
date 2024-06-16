@@ -1,9 +1,7 @@
-import { Metadata } from "next"
 import { redirect } from "next/navigation"
 import { fetchUserProfile } from "@/actions/auth/fetch-user-profile"
 import { fetchArticleData } from "@/actions/fetch-article-data"
 import { countLikes } from "@/data/count-likes"
-import { getArticle } from "@/data/get-article"
 import { hasProfileLikedArticle } from "@/data/get-liked-article"
 import { createClient } from "@/utils/supabase/server"
 import { JSONContent } from "novel"
@@ -42,7 +40,6 @@ export default async function ViewArticle({
 
   const likes = await countLikes(supabase, params.articleId)
 
-  
   const hasLikedArticle = await hasProfileLikedArticle(
     supabase,
     userProfile?.id!,
@@ -50,7 +47,6 @@ export default async function ViewArticle({
   )
 
   const article = await fetchArticleData(params.articleId)
-  console.log(article)
   const initialContent: JSONContent =
     articleData.content as unknown as JSONContent
 
