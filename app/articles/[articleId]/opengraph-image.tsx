@@ -3,9 +3,7 @@
 // @ts-nocheck
 
 import { ImageResponse } from "next/og"
-import { fetchArticle } from "@/actions/fetch-article"
 import { fetchArticleData } from "@/actions/fetch-article-data"
-import { getInitials } from "@/utils/get-initials"
 
 // Route segment config
 export const runtime = "edge"
@@ -19,18 +17,16 @@ export default async function Image({
 }: {
   params: { articleId: string }
 }) {
-  // const {
-  //   title,
-  //   paragraph,
-  //   publishedAt,
-  //   // likesCount,
-  //   // commentsCount,
-  //   publisher,
-  //   // publisherAvatar,
-  //   // imageUrl,
-  // } = await fetchArticleData(params.articleId)
-
-  // const {article} = await fetchArticle(params.articleId)
+  const {
+    title,
+    paragraph,
+    publishedAt,
+    likesCount,
+    commentsCount,
+    publisher,
+    publisherAvatar,
+    imageUrl,
+  } = await fetchArticleData(params.articleId)
 
   // Fonts
   const fontInterBlack = fetch(
@@ -47,14 +43,14 @@ export default async function Image({
     )
   ).then((res) => res.arrayBuffer())
 
-  // // Icons
-  // const heartIcon = fetch(
-  //   new URL("../../../assets/heart.png", import.meta.url)
-  // ).then((res) => res.arrayBuffer())
+  // Icons
+  const heartIcon = fetch(
+    new URL("../../../assets/heart.png", import.meta.url)
+  ).then((res) => res.arrayBuffer())
 
-  // const messageCircleIcon = fetch(
-  //   new URL("../../../assets/message-circle.png", import.meta.url)
-  // ).then((res) => res.arrayBuffer())
+  const messageCircleIcon = fetch(
+    new URL("../../../assets/message-circle.png", import.meta.url)
+  ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
     (
@@ -176,7 +172,7 @@ export default async function Image({
             </div>
             {/* cover image */}
 
-            {/* <div
+            <div
               style={{
                 display: "flex",
                 overflow: "hidden",
@@ -188,9 +184,9 @@ export default async function Image({
               }}
             >
               <img width={200} height={120} src={await coverImg} />
-            </div> */}
+            </div>
           </div>
-          {/* <div
+          <div
             style={{
               display: "flex",
               alignItems: "center",
@@ -216,7 +212,7 @@ export default async function Image({
             >
               {commentsCount} comments
             </span>
-          </div> */}
+          </div>
         </div>
       </div>
     ),
