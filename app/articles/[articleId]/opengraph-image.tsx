@@ -11,8 +11,8 @@ export const runtime = "edge"
 // Image metadata
 export const alt = "Quill Chronicles article"
 export const size = {
-  width: 1200,
-  height: 630,
+  width: 1000,
+  height: 500,
 }
 
 export const contentType = "image/png"
