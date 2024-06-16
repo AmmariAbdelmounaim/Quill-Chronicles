@@ -49,14 +49,14 @@ export default async function Image({
     )
   ).then((res) => res.arrayBuffer())
 
-  // Icons
-  const heartIcon = fetch(
-    new URL("../../../assets/heart.png", import.meta.url)
-  ).then((res) => res.arrayBuffer())
+  // // Icons
+  // const heartIcon = fetch(
+  //   new URL("../../../assets/heart.png", import.meta.url)
+  // ).then((res) => res.arrayBuffer())
 
-  const messageCircleIcon = fetch(
-    new URL("../../../assets/message-circle.png", import.meta.url)
-  ).then((res) => res.arrayBuffer())
+  // const messageCircleIcon = fetch(
+  //   new URL("../../../assets/message-circle.png", import.meta.url)
+  // ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
     (
@@ -194,7 +194,7 @@ export default async function Image({
               <img width={200} height={120} src={await coverImg} />
             </div> */}
           </div>
-          <div
+          {/* <div
             style={{
               display: "flex",
               alignItems: "center",
@@ -220,7 +220,7 @@ export default async function Image({
             >
               {commentsCount} comments
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     ),
